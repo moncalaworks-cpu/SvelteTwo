@@ -24,7 +24,8 @@
       <video
         autoplay
         muted
-        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+        playsinline
+        class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 pointer-events-none"
         style="object-position: center 33%"
       >
         <source src={currentVideo.mp4} type="video/mp4" />

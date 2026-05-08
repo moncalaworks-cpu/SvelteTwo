@@ -18,8 +18,8 @@
         <a href="/live-stream" class="bg-purple-400 hover:bg-purple-500 text-black font-bold py-3 px-8 rounded-lg transition-colors">
           Watch Live
         </a>
-        <a href="/giving" class="bg-transparent border-2 border-purple-400 hover:bg-purple-400 hover:text-black text-purple-400 font-bold py-3 px-8 rounded-lg transition-colors">
-          Give Online
+        <a href="/events" class="bg-transparent border-2 border-purple-400 hover:bg-purple-400 hover:text-black text-purple-400 font-bold py-3 px-8 rounded-lg transition-colors">
+          Events
         </a>
       </div>
     </div>

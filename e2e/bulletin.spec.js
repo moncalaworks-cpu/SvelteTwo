@@ -51,8 +51,7 @@ test.describe('Bulletin Page', () => {
 
     const homeLink = page.locator('a').filter({ hasText: /Hackettstown SDA Church/ }).first()
     if (await homeLink.isVisible()) {
-      await homeLink.click()
-      await page.waitForLoadState('networkidle')
+      await Promise.all([page.waitForURL('/'), homeLink.click()])
       expect(page.url()).toBe('http://localhost:4173/')
     }
   })

@@ -1,8 +1,7 @@
-// Bulletins stored in Vercel Blob
+// Bulletins - stored in public folder or Vercel Blob
 // Update this list when adding new bulletins
 export const bulletins = [
-  // { date: '2026-05-07', url: 'https://your-blob-url.blob.vercel-storage.com/bulletins/bulletin-2026-05-07.pdf' },
-  // Add bulletins here as you upload them
+  { date: '2026-05-09', url: '/May-9-2026-Bulletin.pdf' },
 ]
 
 export const latest = bulletins[0] || null

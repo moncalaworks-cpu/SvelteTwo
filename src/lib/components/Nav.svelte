@@ -6,6 +6,7 @@
     { label: 'About Us', href: '/about' },
     { label: 'Live Stream', href: '/live-stream' },
     { label: 'Calendar', href: '/calendar' },
+    { label: 'Bulletin', href: '/bulletin' },
     { label: 'Giving', href: '/giving' },
     { label: 'Contact', href: '/contact' },
   ]

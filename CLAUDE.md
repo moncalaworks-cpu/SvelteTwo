@@ -194,7 +194,98 @@ Example:
 
 ---
 
-## Deployment
+## Testing
+
+This project uses a comprehensive testing strategy with **local pre-commit hooks** and **GitHub Actions CI/CD**.
+
+### Testing Requirements
+
+**For every change:**
+1. Write a unit test before (or alongside) implementation
+2. Run `npm test` locally to verify all tests pass
+3. Pre-commit hook automatically runs tests — commits fail if tests don't pass
+4. GitHub Actions runs full test suite on push/PR as final quality gate
+
+### Test Commands
+
+```bash
+npm test                    # Run unit tests (Vitest)
+npm run test:ui            # Visual test runner
+npm run test:e2e           # Run E2E tests (Playwright)
+npm run test:e2e:ui        # Visual E2E test runner
+npm run build && npm run test:e2e  # Full build + E2E pipeline
+```
+
+### Test Structure
+
+**Unit Tests** (`src/tests/`):
+- Data validation: `src/tests/data/*.test.js`
+- Component tests: `src/tests/components/*.test.js`
+- Run fast, test individual units in isolation
+
+**E2E Tests** (`e2e/`):
+- Navigation: all 12 pages load and route correctly
+- Bulletin page: PDF display, download, responsiveness
+- Run after build, test full user workflows
+
+### Writing Tests
+
+**Example Unit Test** (data validation):
+```javascript
+import { describe, it, expect } from 'vitest'
+import { church } from '$lib/data/church.js'
+
+describe('church data', () => {
+  it('has required fields', () => {
+    expect(church.name).toBeTruthy()
+    expect(church.phone).toBeTruthy()
+    expect(church.email).toBeTruthy()
+  })
+})
+```
+
+**Example Component Test**:
+```javascript
+import { describe, it, expect } from 'vitest'
+import { render, screen } from '@testing-library/svelte'
+import Nav from '$lib/components/Nav.svelte'
+
+describe('Nav component', () => {
+  it('renders all nav links', () => {
+    render(Nav)
+    expect(screen.getByText('About Us')).toBeTruthy()
+    expect(screen.getByText('Events')).toBeTruthy()
+  })
+})
+```
+
+**Example E2E Test**:
+```javascript
+import { test, expect } from '@playwright/test'
+
+test('home page has hero buttons', async ({ page }) => {
+  await page.goto('/')
+  const eventsButton = page.locator('a[href="/events"]').filter({ hasText: /^Events$/ })
+  await expect(eventsButton).toBeVisible()
+})
+```
+
+### Local Pre-Commit Hook
+
+The `.husky/pre-commit` hook runs unit tests before every commit:
+- Prevents committing broken code
+- Tests run in seconds (faster than E2E)
+- If tests fail, commit is blocked and you can fix issues
+
+### GitHub Actions Quality Gate
+
+`.github/workflows/test.yml` runs on every push and PR:
+- **Unit Tests Job**: Runs `npm test` in clean environment
+- **E2E Tests Job**: Builds app, then runs `npm run test:e2e`
+- Both jobs must pass before merging to main
+- Failed tests block PR merge automatically
+
+### Deployment
 
 SvelteKit with `adapter-auto` automatically detects your deployment platform. The build process generates the appropriate output for:
 - **Vercel** – zero-config deployment

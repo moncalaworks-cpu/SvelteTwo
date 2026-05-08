@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run unit tests
+npm test -- --run --reporter=verbose || exit 1
+
+echo "✅ All unit tests passed!"

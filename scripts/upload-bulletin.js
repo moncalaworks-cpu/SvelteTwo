@@ -36,10 +36,48 @@ async function uploadBulletin() {
     process.exit(1);
   }
 
-  // Get bulletin date
-  const date = await question('📅 Enter bulletin date (YYYY-MM-DD): ');
+  // Try to extract date from filename (e.g., "May-9-2026-Bulletin.pdf")
+  const filename = path.basename(expandedPath);
+  const dateRegex = /([A-Za-z]+)-(\d{1,2})-(\d{4})/;
+  const dateMatch = filename.match(dateRegex);
+
+  let date;
+  if (dateMatch) {
+    const [, month, day, year] = dateMatch;
+    const monthMap = {
+      'January': '01', 'February': '02', 'March': '03', 'April': '04',
+      'May': '05', 'June': '06', 'July': '07', 'August': '08',
+      'September': '09', 'October': '10', 'November': '11', 'December': '12'
+    };
+    const monthNum = monthMap[month] || monthMap[month.toLowerCase()];
+    if (monthNum) {
+      date = `${year}-${monthNum}-${day.padStart(2, '0')}`;
+      console.log(`✓ Detected date from filename: ${date}`);
+    }
+  }
+
+  // If no date found in filename, ask user
+  if (!date) {
+    date = await question('📅 Enter bulletin date (YYYY-MM-DD or Month-D-YYYY): ');
+
+    // Check if user provided Month-D-YYYY format
+    const userDateMatch = date.match(dateRegex);
+    if (userDateMatch) {
+      const [, month, day, year] = userDateMatch;
+      const monthMap = {
+        'January': '01', 'February': '02', 'March': '03', 'April': '04',
+        'May': '05', 'June': '06', 'July': '07', 'August': '08',
+        'September': '09', 'October': '10', 'November': '11', 'December': '12'
+      };
+      const monthNum = monthMap[month] || monthMap[month.toLowerCase()];
+      if (monthNum) {
+        date = `${year}-${monthNum}-${day.padStart(2, '0')}`;
+      }
+    }
+  }
+
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-    console.error('❌ Invalid date format. Use YYYY-MM-DD');
+    console.error('❌ Invalid date format. Use YYYY-MM-DD or Month-D-YYYY');
     process.exit(1);
   }
 

@@ -29,11 +29,11 @@
       </a>
 
       <!-- PDF Viewer -->
-      <div class="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+      <div class="bg-gray-900 rounded-lg overflow-auto border border-gray-700" style="max-height: 90vh;">
         <iframe
           title="Latest Bulletin"
           src={latest.url}
-          class="w-full h-96 md:h-screen rounded-lg"
+          class="w-full h-full"
         />
       </div>
     </div>

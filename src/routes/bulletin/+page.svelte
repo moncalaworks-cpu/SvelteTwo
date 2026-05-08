@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div class="max-w-4xl mx-auto px-4 py-16 md:py-24">
-  <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Sunday Bulletin</h1>
+  <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Bulletin</h1>
   <p class="text-gray-400 mb-8">Weekly service announcements and updates</p>
 
   {#if latest}

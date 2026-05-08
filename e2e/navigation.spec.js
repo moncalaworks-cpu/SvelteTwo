@@ -26,28 +26,31 @@ test.describe('Navigation', () => {
 
   test('home page has hero buttons', async ({ page }) => {
     await page.goto('/')
+    await page.waitForLoadState('domcontentloaded')
 
-    // Get hero section buttons - these are in the main content area with specific styling
-    const watchLiveButton = page.locator('a[href="/live-stream"]').filter({ hasText: 'Watch Live' }).first()
-    const eventsButton = page.locator('a[href="/events"]').filter({ hasText: /^Events$/ }).first()
-    const bulletinButton = page.locator('a[href="/bulletin"]').filter({ hasText: /^Bulletin$/ }).first()
+    // Get hero section buttons - look for buttons with specific text AND href combination
+    // "Watch Live" is unique to hero section
+    const watchLiveButton = page.locator('a[href="/live-stream"]').filter({ hasText: 'Watch Live' })
+    // For Events and Bulletin, get the first occurrence (hero section, not nav)
+    const allEventsButtons = page.locator('a[href="/events"]')
+    const allBulletinButtons = page.locator('a[href="/bulletin"]')
 
     await expect(watchLiveButton).toBeVisible()
-    await expect(eventsButton).toBeVisible()
-    await expect(bulletinButton).toBeVisible()
+    await expect(allEventsButtons.first()).toBeVisible()
+    await expect(allBulletinButtons.first()).toBeVisible()
 
-    expect(watchLiveButton).toHaveAttribute('href', '/live-stream')
-    expect(eventsButton).toHaveAttribute('href', '/events')
-    expect(bulletinButton).toHaveAttribute('href', '/bulletin')
+    expect(await watchLiveButton.getAttribute('href')).toBe('/live-stream')
+    expect(await allEventsButtons.first().getAttribute('href')).toBe('/events')
+    expect(await allBulletinButtons.first().getAttribute('href')).toBe('/bulletin')
   })
 
   test('navigation menu links are functional', async ({ page }) => {
     await page.goto('/')
+    await page.waitForLoadState('domcontentloaded')
 
     // Test desktop nav links
     const aboutLink = page.locator('nav a[href="/about"]')
-    await aboutLink.click()
-    await page.waitForLoadState('networkidle')
+    await Promise.all([page.waitForURL(/\/about/), aboutLink.click()])
     expect(page.url()).toContain('/about')
   })
 
@@ -58,8 +61,7 @@ test.describe('Navigation', () => {
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
 
     const eventsFooterLink = page.locator('footer a[href="/events"]')
-    await eventsFooterLink.click()
-    await page.waitForLoadState('networkidle')
+    await Promise.all([page.waitForURL(/\/events/), eventsFooterLink.click()])
     expect(page.url()).toContain('/events')
   })
 

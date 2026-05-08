@@ -29,7 +29,7 @@
       </a>
 
       <!-- PDF Viewer -->
-      <div class="bg-gray-900 rounded-lg border border-gray-700 overflow-auto" style="height: 60vh; max-height: calc(100vh - 300px);">
+      <div class="bg-gray-900 rounded-lg border border-gray-700 overflow-auto" style="height: 85vh; max-height: calc(100vh - 200px);">
         <iframe
           title="Latest Bulletin"
           src={latest.url}

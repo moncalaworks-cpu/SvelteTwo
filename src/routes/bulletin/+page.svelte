@@ -1,53 +1,67 @@
 <script>
   import { church } from '$lib/data/church.js'
+  import { bulletins, latest } from '$lib/data/bulletins.js'
 </script>
 
 <svelte:head>
   <title>Bulletin - {church.name}</title>
 </svelte:head>
 
-<!-- Hero -->
-<section class="relative w-full h-80 bg-gradient-to-r from-gray-950 to-gray-900 flex items-center justify-center">
-  <div class="absolute inset-0 bg-black/40"></div>
-  <div class="relative z-10 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold text-white">Church Bulletin</h1>
-  </div>
-</section>
+<div class="max-w-4xl mx-auto px-4 py-16 md:py-24">
+  <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Sunday Bulletin</h1>
+  <p class="text-gray-400 mb-8">Weekly service announcements and updates</p>
 
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-  <h2 class="text-2xl font-bold text-white mb-6">Weekly Bulletin</h2>
-  <p class="text-gray-300 mb-8">
-    Download the latest church bulletin below. The bulletin contains announcements, upcoming events, and ministry
-    updates.
-  </p>
+  {#if latest}
+    <!-- Latest Bulletin -->
+    <div class="mb-16">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-white">Latest Bulletin</h2>
+        <span class="text-sm text-purple-400 bg-purple-900/30 px-3 py-1 rounded">{latest.date}</span>
+      </div>
 
-  <!-- PDF Embed Placeholder -->
-  <div class="bg-gray-800 rounded-lg p-8 text-center mb-8">
-    <p class="text-gray-300 mb-4">📄 Latest Bulletin</p>
-    <p class="text-gray-400 text-sm mb-6">
-      To add the weekly bulletin, replace <code class="bg-gray-700 px-2 py-1">static/bulletins/current.pdf</code> with your
-      PDF file.
-    </p>
-    <a
-      href="/bulletins/current.pdf"
-      download
-      class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors"
-    >
-      Download PDF
-    </a>
-  </div>
+      <!-- Download Button -->
+      <a
+        href={latest.url}
+        download
+        class="inline-flex items-center gap-2 bg-purple-500 hover:bg-purple-600 transition px-6 py-3 rounded-lg text-white font-medium mb-6"
+      >
+        <span>📥</span> Download PDF
+      </a>
 
-  <!-- How to Find Bulletins -->
-  <section>
-    <h2 class="text-xl font-bold text-white mb-4">Latest Announcements</h2>
-    <div class="bg-gray-800 rounded-lg p-6">
-      <p class="text-gray-300">
-        Check back soon for the latest bulletin and announcements. You can also contact the church office at
-        <a href={`tel:${church.phone}`} class="hover:text-purple-300 transition-colors">
-          {church.phone}
-        </a>
-        for information.
-      </p>
+      <!-- PDF Viewer -->
+      <div class="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">
+        <iframe
+          title="Latest Bulletin"
+          src={latest.url}
+          class="w-full h-screen rounded-lg"
+        />
+      </div>
     </div>
-  </section>
+
+    <!-- Archive -->
+    {#if bulletins.length > 1}
+      <div class="mt-16 border-t border-gray-700 pt-12">
+        <h3 class="text-xl font-bold text-white mb-6">Past Bulletins</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {#each bulletins.slice(1) as bulletin}
+            <a
+              href={bulletin.url}
+              download
+              class="p-4 bg-gray-800 hover:bg-gray-700 transition rounded-lg border border-gray-700 hover:border-purple-500"
+            >
+              <div class="flex items-center justify-between">
+                <span class="text-white font-medium">{bulletin.date}</span>
+                <span class="text-gray-400">📄</span>
+              </div>
+            </a>
+          {/each}
+        </div>
+      </div>
+    {/if}
+  {:else}
+    <div class="bg-gray-800 border border-gray-700 rounded-lg p-8 text-center">
+      <p class="text-gray-400 mb-4">No bulletins available yet.</p>
+      <p class="text-sm text-gray-500">Check back soon for weekly bulletins.</p>
+    </div>
+  {/if}
 </div>

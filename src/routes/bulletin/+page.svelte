@@ -33,7 +33,7 @@
         <iframe
           title="Latest Bulletin"
           src={latest.url}
-          class="w-full h-screen rounded-lg"
+          class="w-full h-96 md:h-screen rounded-lg"
         />
       </div>
     </div>

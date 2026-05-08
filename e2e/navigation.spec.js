@@ -45,12 +45,10 @@ test.describe('Navigation', () => {
     await page.goto('/')
 
     // Test desktop nav links
-    const aboutLink = page.getByText('About Us').first()
-    if (await aboutLink.isVisible()) {
-      await aboutLink.click()
-      await page.waitForLoadState('networkidle')
-      expect(page.url()).toContain('/about')
-    }
+    const aboutLink = page.locator('nav a[href="/about"]')
+    await aboutLink.click()
+    await page.waitForLoadState('networkidle')
+    expect(page.url()).toContain('/about')
   })
 
   test('footer links work', async ({ page }) => {
@@ -59,12 +57,10 @@ test.describe('Navigation', () => {
     // Scroll to footer
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
 
-    const eventsFooterLink = page.locator('footer').getByRole('link', { name: /events/i })
-    if (await eventsFooterLink.isVisible()) {
-      await eventsFooterLink.click()
-      await page.waitForLoadState('networkidle')
-      expect(page.url()).toContain('/events')
-    }
+    const eventsFooterLink = page.locator('footer a[href="/events"]')
+    await eventsFooterLink.click()
+    await page.waitForLoadState('networkidle')
+    expect(page.url()).toContain('/events')
   })
 
   test('no console errors on home page', async ({ page }) => {

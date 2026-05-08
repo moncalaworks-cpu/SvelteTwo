@@ -14,12 +14,15 @@
     <div class="text-center max-w-3xl px-6">
       <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">{church.name}</h1>
       <p class="text-xl md:text-2xl text-gray-300 mb-8">Welcome to our faith community</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <div class="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
         <a href="/live-stream" class="bg-purple-400 hover:bg-purple-500 text-black font-bold py-3 px-8 rounded-lg transition-colors">
           Watch Live
         </a>
         <a href="/events" class="bg-transparent border-2 border-purple-400 hover:bg-purple-400 hover:text-black text-purple-400 font-bold py-3 px-8 rounded-lg transition-colors">
           Events
+        </a>
+        <a href="/bulletin" class="bg-transparent border-2 border-purple-400 hover:bg-purple-400 hover:text-black text-purple-400 font-bold py-3 px-8 rounded-lg transition-colors">
+          Bulletin
         </a>
       </div>
     </div>

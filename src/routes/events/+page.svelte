@@ -3,14 +3,14 @@
 </script>
 
 <svelte:head>
-  <title>Calendar - {church.name}</title>
+  <title>Events - {church.name}</title>
 </svelte:head>
 
 <!-- Hero -->
 <section class="relative w-full h-80 bg-gradient-to-r from-gray-950 to-gray-900 flex items-center justify-center">
   <div class="absolute inset-0 bg-black/40"></div>
   <div class="relative z-10 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold text-white">Calendar</h1>
+    <h1 class="text-4xl md:text-5xl font-bold text-white">Events</h1>
   </div>
 </section>
 

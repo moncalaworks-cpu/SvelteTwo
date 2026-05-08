@@ -29,7 +29,7 @@
           <li>
             <a href="/live-stream" class="text-gray-400 hover:text-white transition-colors">Live Stream</a>
           </li>
-          <li><a href="/calendar" class="text-gray-400 hover:text-white transition-colors">Calendar</a></li>
+          <li><a href="/events" class="text-gray-400 hover:text-white transition-colors">Events</a></li>
           <li><a href="/giving" class="text-gray-400 hover:text-white transition-colors">Online Giving</a></li>
           <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
         </ul>

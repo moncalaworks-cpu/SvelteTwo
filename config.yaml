@@ -1,0 +1,6 @@
+model_list:
+  - model_name: google/gemma-4-e2b
+    litellm_params:
+      model: openai/gemma
+      api_base: http://localhost:1234/
+      api_key: sk-dummy-key

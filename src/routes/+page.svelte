@@ -45,10 +45,10 @@
         <p class="text-gray-300">Support our ministry online</p>
       </a>
 
-      <!-- Calendar Card -->
-      <a href="/calendar" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
+      <!-- Events Card -->
+      <a href="/events" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">📅</div>
-        <h3 class="text-xl font-bold text-white mb-2">Calendar</h3>
+        <h3 class="text-xl font-bold text-white mb-2">Events</h3>
         <p class="text-gray-300">View upcoming events and services</p>
       </a>
 

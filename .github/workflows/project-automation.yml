@@ -31,7 +31,7 @@ jobs:
               repository(owner: "${{ github.repository_owner }}", name: "${{ github.event.repository.name }}") {
                 projectsV2(first: 10) {
                   nodes {
-                    items(first: 100, filter: {states: [OPEN]}) {
+                    items(first: 100) {
                       nodes {
                         id
                         content {

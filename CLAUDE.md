@@ -319,6 +319,194 @@ For specific deployment instructions, consult your platform's SvelteKit document
 
 ---
 
+---
+
+## User Story Workflow
+
+This project uses a fully automated GitHub Projects V2 workflow for tracking and implementing user stories.
+
+### Board Structure
+
+**GitHub Project**: [Hackettstown SDA Church Website](https://github.com/users/moncalaworks-cpu/projects/6)
+
+**Columns** (automated via status field):
+- **Backlog** – New stories waiting to be started
+- **In Progress** – Actively being implemented
+- **In Review** – PR is open and under review
+- **Done** – PR merged and closed
+
+### Per-Story Workflow
+
+#### 1. Create the User Story
+
+```bash
+gh issue create \
+  --title "US: Brief feature description" \
+  --body "
+**As a** [user type]
+**I want** [action/goal]
+**so that** [benefit]
+
+## Acceptance Criteria
+- [ ] AC1: 
+- [ ] AC2: 
+
+## Sub-Tasks
+- [ ] Write unit tests
+- [ ] Implement feature
+- [ ] Update E2E tests if applicable
+- [ ] Update CLAUDE.md if new patterns
+" \
+  --label "user-story"
+```
+
+Capture the issue number (e.g., `#42`).
+
+#### 2. Add Story to Project Board
+
+```bash
+ISSUE_URL="https://github.com/moncalaworks-cpu/SvelteTwo/issues/42"
+gh project item-add <PROJECT_NUMBER> --url "$ISSUE_URL"
+```
+
+#### 3. Create Feature Branch and Implement
+
+```bash
+git checkout -b feature/US-42-brief-description
+# (slug: lowercase, hyphens, max 30 chars)
+
+# Write code and tests
+npm test  # Verify tests pass locally
+
+git add .
+git commit -m "feat(US-42): Add feature description
+
+- Implement X
+- Add unit tests for Y
+- Update Z
+
+Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>"
+
+git push -u origin feature/US-42-brief-description
+```
+
+#### 4. Create Pull Request
+
+```bash
+gh pr create \
+  --title "feat(US-42): Brief feature description" \
+  --body "Closes #42
+
+## Summary
+What does this PR do?
+
+## Type of Change
+- [x] New feature
+
+## Test Coverage
+- [x] Unit tests added
+- [x] E2E tests updated
+
+## Claude Review Checklist
+- [x] Svelte 5 runes used correctly
+- [x] Tailwind styling consistent
+- [x] Responsive design maintained
+- [x] Dark theme preserved
+- [x] No secrets in code
+- [x] CLAUDE.md updated
+- [x] Accessibility verified
+" \
+  --base main \
+  --head feature/US-42-brief-description
+```
+
+Capture the PR number (e.g., `#123`).
+
+#### 5. Wait for CI Checks
+
+```bash
+gh pr checks <PR_NUMBER> --watch --fail-on-no-checks
+# Waits until both Unit Tests and E2E Tests pass
+```
+
+#### 6. Review Your Own PR
+
+```bash
+gh pr diff <PR_NUMBER> > /tmp/pr.diff
+# Read the diff and analyze code quality
+
+gh pr review <PR_NUMBER> --approve \
+  --body "## Code Review
+
+✅ **Code Quality**: Follows patterns from CLAUDE.md
+✅ **Svelte 5 Runes**: Uses \$state, \$props, \$derived correctly
+✅ **Tailwind Styling**: Consistent with design system
+✅ **Responsive Design**: Mobile-first, responsive prefixes used
+✅ **Dark Theme**: All colors use theme classes, no hardcoded values
+✅ **Testing**: New tests cover functionality, E2E tests pass
+✅ **Accessibility**: Semantic HTML, color contrast verified
+✅ **Documentation**: CLAUDE.md updated with new patterns
+
+Ready to merge."
+```
+
+#### 7. Merge to Main
+
+```bash
+gh pr merge <PR_NUMBER> --squash --delete-branch
+# Automatically:
+# - Squashes commits into single feature commit
+# - Deletes the feature branch
+# - Closes the PR
+# - Triggers project automation to move card to "Done"
+```
+
+#### 8. Verify
+
+```bash
+git checkout main
+git pull
+# Confirm card is in "Done" on the project board
+```
+
+### Variable Setup (One-Time)
+
+Before running the workflow, set up these repo variables (run locally once):
+
+```bash
+gh variable set PROJECT_NUMBER --repo moncalaworks-cpu/SvelteTwo --body "6"
+gh variable set PROJECT_ID --repo moncalaworks-cpu/SvelteTwo --body "PVT_..." # Discovered via GraphQL
+gh variable set STATUS_FIELD_ID --repo moncalaworks-cpu/SvelteTwo --body "PVTF_..." # Field ID
+gh variable set STATUS_BACKLOG_ID --repo moncalaworks-cpu/SvelteTwo --body "..."
+gh variable set STATUS_IN_PROGRESS_ID --repo moncalaworks-cpu/SvelteTwo --body "..."
+gh variable set STATUS_IN_REVIEW_ID --repo moncalaworks-cpu/SvelteTwo --body "..."
+gh variable set STATUS_DONE_ID --repo moncalaworks-cpu/SvelteTwo --body "..."
+
+# Create fine-grained PAT with project:write scope
+gh secret set PROJECT_PAT --repo moncalaworks-cpu/SvelteTwo --body "github_pat_..."
+```
+
+### Commit Message Convention
+
+```
+feat(US-{N}): Brief description
+
+- Implement feature X
+- Add tests for Y
+
+Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>
+```
+
+### Work Item Types
+
+Stories can have linked work items:
+- **Pull Requests** – Feature branches and code review
+- **Bugs** – Issues found during implementation or testing
+- **Research Tasks** – Investigation or discovery tasks
+- **Sub-Tasks** – Checkboxes within the story for team tracking
+
+---
+
 ## Resources
 
 - [SvelteKit Docs](https://kit.svelte.dev)

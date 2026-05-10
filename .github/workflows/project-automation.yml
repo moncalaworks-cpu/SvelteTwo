@@ -1,0 +1,114 @@
+name: Project Automation
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, closed]
+    branches: [main]
+
+env:
+  GH_TOKEN: ${{ secrets.PROJECT_PAT }}
+
+jobs:
+  update-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract issue number from PR body
+        id: extract-issue
+        run: |
+          ISSUE_NUM=$(echo "${{ github.event.pull_request.body }}" | grep -oiE '(closes|fixes|resolves) #[0-9]+' | grep -oE '[0-9]+' | head -1)
+          if [ -z "$ISSUE_NUM" ]; then
+            echo "No linked issue found, skipping project automation"
+            exit 0
+          fi
+          echo "issue_number=$ISSUE_NUM" >> $GITHUB_OUTPUT
+
+      - name: Find project item ID
+        id: find-item
+        if: steps.extract-issue.outputs.issue_number != ''
+        run: |
+          ITEM_ID=$(gh api graphql -f query='
+            query {
+              repository(owner: "${{ github.repository_owner }}", name: "${{ github.event.repository.name }}") {
+                projectsV2(first: 10) {
+                  nodes {
+                    items(first: 100, filter: {states: [OPEN]}) {
+                      nodes {
+                        id
+                        content {
+                          ... on Issue {
+                            number
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ' -q ".repository.projectsV2.nodes[0].items.nodes[] | select(.content.number == ${{ steps.extract-issue.outputs.issue_number }}) | .id" 2>/dev/null || echo "")
+
+          if [ -z "$ITEM_ID" ]; then
+            echo "Project item not found, skipping"
+            exit 0
+          fi
+          echo "item_id=$ITEM_ID" >> $GITHUB_OUTPUT
+
+      - name: Move to In Review (PR opened/ready)
+        if: steps.find-item.outputs.item_id != '' && (github.event.action == 'opened' || github.event.action == 'ready_for_review')
+        run: |
+          gh api graphql -f query='
+            mutation {
+              updateProjectV2ItemFieldValue(
+                input: {
+                  projectId: "${{ vars.PROJECT_ID }}"
+                  itemId: "${{ steps.find-item.outputs.item_id }}"
+                  fieldId: "${{ vars.STATUS_FIELD_ID }}"
+                  value: { singleSelectOptionId: "${{ vars.STATUS_IN_REVIEW_ID }}" }
+                }
+              ) {
+                projectV2Item {
+                  id
+                }
+              }
+            }
+          ' > /dev/null
+
+      - name: Move to Done (PR merged)
+        if: steps.find-item.outputs.item_id != '' && github.event.pull_request.merged == true
+        run: |
+          gh api graphql -f query='
+            mutation {
+              updateProjectV2ItemFieldValue(
+                input: {
+                  projectId: "${{ vars.PROJECT_ID }}"
+                  itemId: "${{ steps.find-item.outputs.item_id }}"
+                  fieldId: "${{ vars.STATUS_FIELD_ID }}"
+                  value: { singleSelectOptionId: "${{ vars.STATUS_DONE_ID }}" }
+                }
+              ) {
+                projectV2Item {
+                  id
+                }
+              }
+            }
+          ' > /dev/null
+
+      - name: Move to In Progress (PR closed without merge)
+        if: steps.find-item.outputs.item_id != '' && github.event.action == 'closed' && github.event.pull_request.merged == false
+        run: |
+          gh api graphql -f query='
+            mutation {
+              updateProjectV2ItemFieldValue(
+                input: {
+                  projectId: "${{ vars.PROJECT_ID }}"
+                  itemId: "${{ steps.find-item.outputs.item_id }}"
+                  fieldId: "${{ vars.STATUS_FIELD_ID }}"
+                  value: { singleSelectOptionId: "${{ vars.STATUS_IN_PROGRESS_ID }}" }
+                }
+              ) {
+                projectV2Item {
+                  id
+                }
+              }
+            }
+          ' > /dev/null

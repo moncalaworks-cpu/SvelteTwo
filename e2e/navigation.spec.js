@@ -8,7 +8,6 @@ test.describe('Navigation', () => {
     { name: 'Bulletin', path: '/bulletin' },
     { name: 'Contact', path: '/contact' },
     { name: 'Food Pantry', path: '/food-pantry' },
-    { name: 'Forms', path: '/forms' },
     { name: 'Galleries', path: '/galleries' },
     { name: 'Login', path: '/login' },
     { name: 'NJC Youth', path: '/njc-youth' },

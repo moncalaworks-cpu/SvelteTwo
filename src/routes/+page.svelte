@@ -69,13 +69,6 @@
         <h3 class="text-xl font-bold text-white mb-2">{t('home.cardContact')}</h3>
         <p class="text-gray-300">{t('home.cardContactDesc')}</p>
       </a>
-
-      <!-- Forms Card -->
-      <a href="/forms" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
-        <div class="text-4xl mb-4">📝</div>
-        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardForms')}</h3>
-        <p class="text-gray-300">{t('home.cardFormsDesc')}</p>
-      </a>
     </div>
   </div>
 </section>

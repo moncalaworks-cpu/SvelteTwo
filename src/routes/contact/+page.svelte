@@ -1,12 +1,46 @@
 <script>
   import { church } from '$lib/data/church.js'
   import { t } from '$lib/i18n.svelte.js'
-  let formData = $state({ name: '', email: '', message: '' })
+
+  let intent = $state('message')
+  let formData = $state({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    prayerRequest: '',
+    isPrivate: false,
+    visitDate: '',
+    address: '',
+    hearAbout: '',
+  })
   let submitted = $state(false)
 
   function handleSubmit() {
     submitted = true
+    setTimeout(() => {
+      submitted = false
+      formData = {
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        prayerRequest: '',
+        isPrivate: false,
+        visitDate: '',
+        address: '',
+        hearAbout: '',
+      }
+    }, 3000)
   }
+
+  let successKey = $derived(
+    intent === 'prayer'
+      ? 'contact.prayerSuccess'
+      : intent === 'visitor'
+        ? 'contact.visitorSuccess'
+        : 'contact.success'
+  )
 </script>
 
 <svelte:head>
@@ -67,10 +101,11 @@
 
       {#if submitted}
         <div class="bg-green-900 border border-green-600 rounded-lg p-6 mb-6">
-          <p class="text-green-200">{t('contact.success')}</p>
+          <p class="text-green-200">{t(successKey)}</p>
         </div>
       {:else}
         <form onsubmit={handleSubmit} class="space-y-4">
+          <!-- Name -->
           <div>
             <label for="name" class="block text-white font-semibold mb-2">{t('contact.nameLabel')}</label>
             <input
@@ -83,6 +118,7 @@
             />
           </div>
 
+          <!-- Email -->
           <div>
             <label for="email" class="block text-white font-semibold mb-2">{t('contact.emailFieldLabel')}</label>
             <input
@@ -95,17 +131,128 @@
             />
           </div>
 
+          <!-- Phone -->
           <div>
-            <label for="message" class="block text-white font-semibold mb-2">{t('contact.messageLabel')}</label>
-            <textarea
-              id="message"
-              bind:value={formData.message}
-              required
-              rows="6"
+            <label for="phone" class="block text-white font-semibold mb-2">{t('contact.formPhoneLabel')}</label>
+            <input
+              type="tel"
+              id="phone"
+              bind:value={formData.phone}
               class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-              placeholder={t('contact.messagePlaceholder')}
-            ></textarea>
+              placeholder={t('contact.formPhonePlaceholder')}
+            />
           </div>
+
+          <!-- Intent Selector -->
+          <fieldset>
+            <legend class="block text-white font-semibold mb-3">{t('contact.intentLabel')}</legend>
+            <div class="space-y-2">
+              <label class="flex items-center text-gray-300 hover:text-white cursor-pointer">
+                <input
+                  type="radio"
+                  name="intent"
+                  value="message"
+                  bind:group={intent}
+                  class="w-4 h-4 accent-purple-400 cursor-pointer"
+                />
+                <span class="ml-2">{t('contact.intentMessage')}</span>
+              </label>
+              <label class="flex items-center text-gray-300 hover:text-white cursor-pointer">
+                <input
+                  type="radio"
+                  name="intent"
+                  value="prayer"
+                  bind:group={intent}
+                  class="w-4 h-4 accent-purple-400 cursor-pointer"
+                />
+                <span class="ml-2">{t('contact.intentPrayer')}</span>
+              </label>
+              <label class="flex items-center text-gray-300 hover:text-white cursor-pointer">
+                <input
+                  type="radio"
+                  name="intent"
+                  value="visitor"
+                  bind:group={intent}
+                  class="w-4 h-4 accent-purple-400 cursor-pointer"
+                />
+                <span class="ml-2">{t('contact.intentVisitor')}</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Conditional: Message -->
+          {#if intent === 'message'}
+            <div>
+              <label for="message" class="block text-white font-semibold mb-2">{t('contact.messageLabel')}</label>
+              <textarea
+                id="message"
+                bind:value={formData.message}
+                required
+                rows="6"
+                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
+                placeholder={t('contact.messagePlaceholder')}
+              ></textarea>
+            </div>
+          {/if}
+
+          <!-- Conditional: Prayer Request -->
+          {#if intent === 'prayer'}
+            <div>
+              <label for="prayer" class="block text-white font-semibold mb-2">{t('contact.prayerRequestLabel')}</label>
+              <textarea
+                id="prayer"
+                bind:value={formData.prayerRequest}
+                required
+                rows="6"
+                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
+                placeholder={t('contact.prayerPlaceholder')}
+              ></textarea>
+            </div>
+
+            <label class="flex items-center text-gray-300 hover:text-white cursor-pointer">
+              <input
+                type="checkbox"
+                bind:checked={formData.isPrivate}
+                class="w-4 h-4 accent-purple-400 cursor-pointer"
+              />
+              <span class="ml-2">{t('contact.privateLabel')}</span>
+            </label>
+          {/if}
+
+          <!-- Conditional: Visitor Info -->
+          {#if intent === 'visitor'}
+            <div>
+              <label for="visitDate" class="block text-white font-semibold mb-2">{t('contact.visitDateLabel')}</label>
+              <input
+                type="date"
+                id="visitDate"
+                bind:value={formData.visitDate}
+                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-400"
+              />
+            </div>
+
+            <div>
+              <label for="address" class="block text-white font-semibold mb-2">{t('contact.yourAddressLabel')}</label>
+              <input
+                type="text"
+                id="address"
+                bind:value={formData.address}
+                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
+                placeholder={t('contact.yourAddressPlaceholder')}
+              />
+            </div>
+
+            <div>
+              <label for="hearAbout" class="block text-white font-semibold mb-2">{t('contact.hearAboutLabel')}</label>
+              <input
+                type="text"
+                id="hearAbout"
+                bind:value={formData.hearAbout}
+                class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
+                placeholder={t('contact.hearAboutPlaceholder')}
+              />
+            </div>
+          {/if}
 
           <button
             type="submit"

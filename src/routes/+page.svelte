@@ -31,56 +31,56 @@
 </VideoCarousel>
 
 <!-- Quick Links Section -->
-<section class="py-16 md:py-24 bg-gray-900">
+<section class="py-16 md:py-24 bg-white dark:bg-gray-900">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">{t('home.exploreTitle')}</h2>
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white text-center mb-12">{t('home.exploreTitle')}</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Live Stream Card -->
-      <a href={church.youtube} target="_blank" rel="noopener noreferrer" data-sveltekit-preload-data="off" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
+      <a href={church.youtube} target="_blank" rel="noopener noreferrer" data-sveltekit-preload-data="off" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">🎥</div>
-        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardLiveStream')}</h3>
-        <p class="text-gray-300">{t('home.cardLiveStreamDesc')}</p>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{t('home.cardLiveStream')}</h3>
+        <p class="text-gray-700 dark:text-gray-300">{t('home.cardLiveStreamDesc')}</p>
       </a>
 
       <!-- Giving Card -->
-      <a href={church.giving} target="_blank" rel="noopener noreferrer nofollow" data-sveltekit-preload-data="off" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
+      <a href={church.giving} target="_blank" rel="noopener noreferrer nofollow" data-sveltekit-preload-data="off" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">💝</div>
-        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardGiving')}</h3>
-        <p class="text-gray-300">{t('home.cardGivingDesc')}</p>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{t('home.cardGiving')}</h3>
+        <p class="text-gray-700 dark:text-gray-300">{t('home.cardGivingDesc')}</p>
       </a>
 
       <!-- Events Card -->
-      <a href="/events" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
+      <a href="/events" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">📅</div>
-        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardEvents')}</h3>
-        <p class="text-gray-300">{t('home.cardEventsDesc')}</p>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{t('home.cardEvents')}</h3>
+        <p class="text-gray-700 dark:text-gray-300">{t('home.cardEventsDesc')}</p>
       </a>
 
       <!-- Food Pantry Card -->
-      <a href="/food-pantry" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
+      <a href="/food-pantry" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">🍽️</div>
-        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardFoodPantry')}</h3>
-        <p class="text-gray-300">{t('home.cardFoodPantryDesc')}</p>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{t('home.cardFoodPantry')}</h3>
+        <p class="text-gray-700 dark:text-gray-300">{t('home.cardFoodPantryDesc')}</p>
       </a>
 
       <!-- Contact Card -->
-      <a href="/contact" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
+      <a href="/contact" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">📧</div>
-        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardContact')}</h3>
-        <p class="text-gray-300">{t('home.cardContactDesc')}</p>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{t('home.cardContact')}</h3>
+        <p class="text-gray-700 dark:text-gray-300">{t('home.cardContactDesc')}</p>
       </a>
     </div>
   </div>
 </section>
 
 <!-- Welcome Section -->
-<section class="py-16 md:py-24 bg-gray-950">
+<section class="py-16 md:py-24 bg-white dark:bg-gray-950">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">{t('home.welcomeTitle')}</h2>
-    <p class="text-lg text-gray-300 mb-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">{t('home.welcomeTitle')}</h2>
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
       {t('home.welcomeP1')}
     </p>
-    <p class="text-lg text-gray-300">
+    <p class="text-lg text-gray-700 dark:text-gray-300">
       {t('home.welcomeP2')}
     </p>
   </div>

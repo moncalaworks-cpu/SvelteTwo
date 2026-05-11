@@ -8,7 +8,7 @@
 </svelte:head>
 
 <!-- Hero -->
-<section class="relative w-full h-80 bg-gradient-to-r from-gray-950 to-gray-900 flex items-center justify-center">
+<section class="relative w-full h-80 bg-gradient-to-r from-purple-900 to-purple-800 dark:from-gray-950 dark:to-gray-900 flex items-center justify-center">
   <div class="absolute inset-0 bg-black/40"></div>
   <div class="relative z-10 text-center">
     <h1 class="text-4xl md:text-5xl font-bold text-white">{t('njcYouth.title')}</h1>
@@ -16,17 +16,17 @@
 </section>
 
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-  <h2 class="text-2xl font-bold text-white mb-6">{t('njcYouth.ministryTitle')}</h2>
-  <p class="text-lg text-gray-300 mb-8">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('njcYouth.ministryTitle')}</h2>
+  <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">
     {t('njcYouth.ministryDesc')}
   </p>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
     <!-- What is NJC Youth? -->
     <section>
-      <h3 class="text-xl font-bold text-white mb-4">{t('njcYouth.aboutTitle')}</h3>
-      <div class="bg-gray-800 rounded-lg p-6">
-        <p class="text-gray-300">
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">{t('njcYouth.aboutTitle')}</h3>
+      <div class="bg-gray-200 dark:bg-gray-800 rounded-lg p-6">
+        <p class="text-gray-700 dark:text-gray-300">
           {t('njcYouth.aboutText')}
         </p>
       </div>
@@ -34,9 +34,9 @@
 
     <!-- Get Involved -->
     <section>
-      <h3 class="text-xl font-bold text-white mb-4">{t('njcYouth.getInvolvedTitle')}</h3>
-      <div class="bg-gray-800 rounded-lg p-6">
-        <p class="text-gray-300 mb-4">
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">{t('njcYouth.getInvolvedTitle')}</h3>
+      <div class="bg-gray-200 dark:bg-gray-800 rounded-lg p-6">
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
           {t('njcYouth.getInvolvedText')}
         </p>
         <a
@@ -53,9 +53,9 @@
 
   <!-- Upcoming Events -->
   <section>
-    <h2 class="text-2xl font-bold text-white mb-6">{t('njcYouth.eventsTitle')}</h2>
-    <div class="bg-gray-800 rounded-lg p-8 text-center">
-      <p class="text-gray-300 mb-4">{t('njcYouth.eventsText')}</p>
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('njcYouth.eventsTitle')}</h2>
+    <div class="bg-gray-200 dark:bg-gray-800 rounded-lg p-8 text-center">
+      <p class="text-gray-700 dark:text-gray-300 mb-4">{t('njcYouth.eventsText')}</p>
       <a
         href={church.njcYouthUrl}
         target="_blank"
@@ -69,8 +69,8 @@
 
   <!-- Contact Info -->
   <section class="mt-12">
-    <h2 class="text-2xl font-bold text-white mb-6">{t('njcYouth.questionsTitle')}</h2>
-    <p class="text-gray-300 mb-6">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('njcYouth.questionsTitle')}</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
       {t('njcYouth.questionsText')}
     </p>
   </section>

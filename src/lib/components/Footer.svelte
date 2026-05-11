@@ -1,5 +1,6 @@
 <script>
   import { church } from '$lib/data/church.js'
+  import { t } from '$lib/i18n.svelte.js'
 </script>
 
 <footer class="bg-gray-900 border-t border-gray-800 mt-16">
@@ -23,21 +24,21 @@
 
       <!-- Quick Links -->
       <div>
-        <h3 class="text-lg font-bold text-white mb-4">Quick Links</h3>
+        <h3 class="text-lg font-bold text-white mb-4">{t('footer.quickLinks')}</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+          <li><a href="/about" class="text-gray-400 hover:text-white transition-colors">{t('nav.aboutUs')}</a></li>
           <li>
-            <a href="/live-stream" class="text-gray-400 hover:text-white transition-colors">Live Stream</a>
+            <a href="/live-stream" class="text-gray-400 hover:text-white transition-colors">{t('nav.liveStream')}</a>
           </li>
-          <li><a href="/events" class="text-gray-400 hover:text-white transition-colors">Events</a></li>
-          <li><a href="/giving" class="text-gray-400 hover:text-white transition-colors">Online Giving</a></li>
-          <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+          <li><a href="/events" class="text-gray-400 hover:text-white transition-colors">{t('nav.events')}</a></li>
+          <li><a href="/giving" class="text-gray-400 hover:text-white transition-colors">{t('nav.giving')}</a></li>
+          <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">{t('nav.contact')}</a></li>
         </ul>
       </div>
 
       <!-- Social Media -->
       <div>
-        <h3 class="text-lg font-bold text-white mb-4">Follow Us</h3>
+        <h3 class="text-lg font-bold text-white mb-4">{t('footer.followUs')}</h3>
         <div class="flex gap-4">
           <a
             href={church.facebook}
@@ -84,7 +85,7 @@
 
     <!-- Copyright -->
     <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-      <p>&copy; {new Date().getFullYear()} {church.name}. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} {church.name}. {t('footer.rights')}</p>
     </div>
   </div>
 </footer>

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte'
+  import { browser } from '$app/environment'
 
   let { videos = [], rotationInterval = 5000, children } = $props()
 
@@ -7,7 +8,7 @@
   let currentVideo = $derived(videos[currentIndex])
   let videoFailed = $state(false)
   let imageDisplayTimer = $state(null)
-  let isMobile = $state(false)
+  let isMobile = $state(browser ? window.innerWidth < 768 : false)
   let videoElement = $state(null)
   let rotationTimeout = $state(null)
   let autoplayTimeout = $state(null)
@@ -35,8 +36,22 @@
 
     scheduleNextRotation()
 
+    return () => {
+      if (rotationTimeout) clearTimeout(rotationTimeout)
+      if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
+      if (autoplayTimeout) clearTimeout(autoplayTimeout)
+      if (mobileVideoTimeout) clearTimeout(mobileVideoTimeout)
+      window.removeEventListener('resize', handleResize)
+    }
+  })
+
+  // Separate effect for mobile fallback: triggers when video changes
+  $effect(() => {
+    // Depend on currentIndex to re-run when video changes
+    currentIndex
+
     // On mobile, show fallback image after short delay since autoplay is unreliable
-    if (isMobile && !videoFailed) {
+    if (isMobile && !videoFailed && browser) {
       if (mobileVideoTimeout) clearTimeout(mobileVideoTimeout)
       mobileVideoTimeout = setTimeout(() => {
         videoFailed = true
@@ -44,11 +59,7 @@
     }
 
     return () => {
-      if (rotationTimeout) clearTimeout(rotationTimeout)
-      if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
-      if (autoplayTimeout) clearTimeout(autoplayTimeout)
       if (mobileVideoTimeout) clearTimeout(mobileVideoTimeout)
-      window.removeEventListener('resize', handleResize)
     }
   })
 

@@ -12,7 +12,6 @@ describe('Nav component', () => {
   it('renders all navigation links on desktop', () => {
     render(Nav)
     expect(screen.getByText('About Us')).toBeTruthy()
-    expect(screen.getByText('Live Stream')).toBeTruthy()
     expect(screen.getByText('Events')).toBeTruthy()
     expect(screen.getByText('Bulletin')).toBeTruthy()
     expect(screen.getByText('Contact')).toBeTruthy()
@@ -26,7 +25,6 @@ describe('Nav component', () => {
     const hrefs = links.map((link) => link.getAttribute('href'))
 
     expect(hrefs).toContain('/about')
-    expect(hrefs).toContain('/live-stream')
     expect(hrefs).toContain('/events')
     expect(hrefs).toContain('/bulletin')
     expect(hrefs).toContain('/contact')

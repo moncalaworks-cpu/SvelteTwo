@@ -4,7 +4,6 @@ test.describe('Navigation', () => {
   const pages = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
-    { name: 'Live Stream', path: '/live-stream' },
     { name: 'Events', path: '/events' },
     { name: 'Bulletin', path: '/bulletin' },
     { name: 'Contact', path: '/contact' },

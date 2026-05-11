@@ -27,9 +27,7 @@
         <h3 class="text-lg font-bold text-white mb-4">{t('footer.quickLinks')}</h3>
         <ul class="space-y-2 text-sm">
           <li><a href="/about" class="text-gray-400 hover:text-white transition-colors">{t('nav.aboutUs')}</a></li>
-          <li>
-            <a href="/live-stream" class="text-gray-400 hover:text-white transition-colors">{t('nav.liveStream')}</a>
-          </li>
+          <li><a href={church.youtube} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">{t('nav.liveStream')}</a></li>
           <li><a href="/events" class="text-gray-400 hover:text-white transition-colors">{t('nav.events')}</a></li>
           <li><a href={church.giving} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">{t('nav.giving')}</a></li>
           <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">{t('nav.contact')}</a></li>

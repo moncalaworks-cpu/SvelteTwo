@@ -31,7 +31,7 @@
             <a href="/live-stream" class="text-gray-400 hover:text-white transition-colors">{t('nav.liveStream')}</a>
           </li>
           <li><a href="/events" class="text-gray-400 hover:text-white transition-colors">{t('nav.events')}</a></li>
-          <li><a href="/giving" class="text-gray-400 hover:text-white transition-colors">{t('nav.giving')}</a></li>
+          <li><a href={church.giving} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">{t('nav.giving')}</a></li>
           <li><a href="/contact" class="text-gray-400 hover:text-white transition-colors">{t('nav.contact')}</a></li>
         </ul>
       </div>

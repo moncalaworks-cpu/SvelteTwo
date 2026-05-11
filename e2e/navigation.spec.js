@@ -11,7 +11,6 @@ test.describe('Navigation', () => {
     { name: 'Food Pantry', path: '/food-pantry' },
     { name: 'Forms', path: '/forms' },
     { name: 'Galleries', path: '/galleries' },
-    { name: 'Giving', path: '/giving' },
     { name: 'Login', path: '/login' },
     { name: 'NJC Youth', path: '/njc-youth' },
   ]

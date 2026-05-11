@@ -8,8 +8,11 @@
     { key: 'nav.liveStream', href: '/live-stream' },
     { key: 'nav.events', href: '/events' },
     { key: 'nav.bulletin', href: '/bulletin' },
-    { key: 'nav.giving', href: '/giving' },
     { key: 'nav.contact', href: '/contact' },
+  ]
+
+  const externalLinks = [
+    { key: 'nav.giving', href: church.giving },
   ]
 </script>
 
@@ -25,6 +28,11 @@
       <div class="hidden md:flex items-center gap-8">
         {#each navLinks as link}
           <a href={link.href} class="text-gray-300 hover:text-white transition-colors">
+            {t(link.key)}
+          </a>
+        {/each}
+        {#each externalLinks as link}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors">
             {t(link.key)}
           </a>
         {/each}
@@ -87,6 +95,17 @@
         {#each navLinks as link}
           <a
             href={link.href}
+            class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded transition-colors"
+            onclick={() => (mobileMenuOpen = false)}
+          >
+            {t(link.key)}
+          </a>
+        {/each}
+        {#each externalLinks as link}
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
             class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded transition-colors"
             onclick={() => (mobileMenuOpen = false)}
           >

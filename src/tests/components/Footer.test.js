@@ -31,7 +31,6 @@ describe('Footer component', () => {
 
     expect(hrefs).toContain('/about')
     expect(hrefs).toContain('/events')
-    expect(hrefs).toContain('/giving')
     expect(hrefs).toContain('/contact')
   })
 

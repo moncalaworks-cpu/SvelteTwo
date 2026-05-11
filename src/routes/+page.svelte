@@ -43,7 +43,7 @@
       </a>
 
       <!-- Giving Card -->
-      <a href="/giving" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
+      <a href={church.giving} target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">💝</div>
         <h3 class="text-xl font-bold text-white mb-2">{t('home.cardGiving')}</h3>
         <p class="text-gray-300">{t('home.cardGivingDesc')}</p>

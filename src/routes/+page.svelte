@@ -12,7 +12,7 @@
 <!-- Hero Section with Video Background -->
 <VideoCarousel videos={backgroundVideos} rotationInterval={5000}>
   {#snippet children()}
-    <div class="text-center max-w-3xl px-6">
+    <div class="text-center max-w-3xl px-4 sm:px-6 py-8 sm:py-12 bg-black/50 rounded-lg">
       <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">{church.name}</h1>
       <p class="text-xl md:text-2xl text-gray-300 mb-8">{t('home.heroSubtitle')}</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">

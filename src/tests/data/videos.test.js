@@ -14,10 +14,10 @@ describe('backgroundVideos data', () => {
     })
   })
 
-  it('video URLs point to Vercel Blob', () => {
+  it('video URLs are local paths', () => {
     backgroundVideos.forEach((video) => {
-      expect(video.mp4).toContain('blob.vercel-storage.com')
-      expect(video.webm).toContain('blob.vercel-storage.com')
+      expect(video.mp4).toMatch(/^\/videos\//)
+      expect(video.webm).toMatch(/^\/videos\//)
     })
   })
 

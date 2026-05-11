@@ -11,6 +11,7 @@
   let videoElement = $state(null)
   let rotationTimeout = $state(null)
   let autoplayTimeout = $state(null)
+  let mobileVideoTimeout = $state(null)
 
   onMount(() => {
     // Detect mobile viewport
@@ -34,10 +35,19 @@
 
     scheduleNextRotation()
 
+    // On mobile, show fallback image after short delay since autoplay is unreliable
+    if (isMobile && !videoFailed) {
+      if (mobileVideoTimeout) clearTimeout(mobileVideoTimeout)
+      mobileVideoTimeout = setTimeout(() => {
+        videoFailed = true
+      }, 3000)
+    }
+
     return () => {
       if (rotationTimeout) clearTimeout(rotationTimeout)
       if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
       if (autoplayTimeout) clearTimeout(autoplayTimeout)
+      if (mobileVideoTimeout) clearTimeout(mobileVideoTimeout)
       window.removeEventListener('resize', handleResize)
     }
   })
@@ -66,14 +76,6 @@
     if (autoplayTimeout) clearTimeout(autoplayTimeout)
   }
 
-  function checkAutoplayTimeout() {
-    // If video hasn't started after 2 seconds, it's probably blocked
-    // Fall back to image on mobile
-    if (autoplayTimeout) clearTimeout(autoplayTimeout)
-    if (isMobile && videoElement && !videoElement.currentTime) {
-      handleVideoError()
-    }
-  }
 </script>
 
 <div class="relative w-full h-screen overflow-hidden">
@@ -88,12 +90,6 @@
         onerror={handleVideoError}
         onended={handleVideoEnded}
         onplay={handleVideoPlay}
-        onloadstart={() => {
-          // Set timeout to check if autoplay is blocked on mobile
-          if (isMobile && !autoplayTimeout) {
-            autoplayTimeout = setTimeout(checkAutoplayTimeout, 2000)
-          }
-        }}
         class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 pointer-events-none"
         style="object-position: center 33%"
       >

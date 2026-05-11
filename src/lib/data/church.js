@@ -3,7 +3,7 @@ export const church = {
   address: '927 County Road 517, Hackettstown, NJ 07840',
   phone: '(908) 852-6100',
   email: 'htnjsda@gmail.com',
-  facebook: 'https://www.youtube.com/@hackettstownsdachurch/streams',
+  facebook: 'https://www.facebook.com/Hackettstown-SDA-Church-160810030663506/',
   youtube: 'https://www.youtube.com/@hackettstownsdachurch/streams',
   liveStream: 'https://www.youtube.com/@hackettstownsdachurch/streams',
   youtubeChannelId: 'UCIQvQs_RCMGiuTnTCBtumlQ',

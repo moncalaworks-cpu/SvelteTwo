@@ -11,7 +11,7 @@
 <section class="relative w-full h-80 bg-gradient-to-r from-purple-900 to-purple-800 dark:from-gray-950 dark:to-gray-900 flex items-center justify-center">
   <div class="absolute inset-0 bg-black/40"></div>
   <div class="relative z-10 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold text-white">{t('foodPantry.title')}</h1>
+    <h1 class="text-4xl md:text-5xl font-bold text-white !text-white">{t('foodPantry.title')}</h1>
   </div>
 </section>
 

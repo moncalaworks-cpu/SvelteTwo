@@ -54,7 +54,7 @@
   style="background-image: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3)), url({contactBg})"
 >
   <div class="relative z-10 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold text-white">{t('contact.title')}</h1>
+    <h1 class="text-4xl md:text-5xl font-bold text-white !text-white">{t('contact.title')}</h1>
   </div>
 </section>
 

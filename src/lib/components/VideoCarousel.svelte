@@ -29,7 +29,7 @@
       if (rotationTimeout) clearTimeout(rotationTimeout)
       rotationTimeout = setTimeout(() => {
         if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
-        videoFailed = false
+        if (!isMobile) videoFailed = false
         currentIndex = (currentIndex + 1) % videos.length
       }, rotationInterval)
     }

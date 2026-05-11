@@ -165,6 +165,7 @@
         <button
           onclick={() => setLanguage(getLanguage() === 'en' ? 'es' : 'en')}
           class="w-full text-left px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white rounded transition-colors text-sm"
+          aria-label="Toggle language"
         >
           {getLanguage() === 'en' ? 'Español' : 'English'}
         </button>

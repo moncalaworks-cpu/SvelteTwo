@@ -1,5 +1,6 @@
 <script>
   import { church } from '$lib/data/church.js'
+  import { t } from '$lib/i18n.svelte.js'
   let activeTab = $state('visitor')
   let visitorForm = $state({ name: '', email: '', phone: '', address: '', visitDate: '', how: '' })
   let prayerForm = $state({ name: '', request: '', isPrivate: true })
@@ -30,7 +31,7 @@
 <section class="relative w-full h-80 bg-gradient-to-r from-gray-950 to-gray-900 flex items-center justify-center">
   <div class="absolute inset-0 bg-black/40"></div>
   <div class="relative z-10 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold text-white">Forms</h1>
+    <h1 class="text-4xl md:text-5xl font-bold text-white">{t('forms.title')}</h1>
   </div>
 </section>
 
@@ -45,7 +46,7 @@
           : 'text-gray-400 hover:text-white'
       }`}
     >
-      Visitor Card
+      {t('forms.visitorTab')}
     </button>
     <button
       onclick={() => (activeTab = 'prayer')}
@@ -55,60 +56,60 @@
           : 'text-gray-400 hover:text-white'
       }`}
     >
-      Prayer Request
+      {t('forms.prayerTab')}
     </button>
   </div>
 
   <!-- Visitor Card Form -->
   {#if activeTab === 'visitor'}
     <div class="bg-gray-800 rounded-lg p-8">
-      <h2 class="text-2xl font-bold text-white mb-6">Visitor Card</h2>
-      <p class="text-gray-300 mb-6">Welcome! Please fill out your information so we can get to know you better.</p>
+      <h2 class="text-2xl font-bold text-white mb-6">{t('forms.visitorTitle')}</h2>
+      <p class="text-gray-300 mb-6">{t('forms.visitorIntro')}</p>
 
       {#if submitted.visitor}
         <div class="bg-green-900 border border-green-600 rounded-lg p-4 mb-6">
-          <p class="text-green-200">Thank you for visiting! We're blessed to have you with us.</p>
+          <p class="text-green-200">{t('forms.visitorSuccess')}</p>
         </div>
       {:else}
         <form onsubmit={handleVisitorSubmit} class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label for="v_name" class="block text-white font-semibold mb-2">Full Name *</label>
+              <label for="v_name" class="block text-white font-semibold mb-2">{t('forms.nameLabel')} *</label>
               <input
                 type="text"
                 id="v_name"
                 bind:value={visitorForm.name}
                 required
                 class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-                placeholder="Your Name"
+                placeholder={t('forms.namePlaceholder')}
               />
             </div>
             <div>
-              <label for="v_email" class="block text-white font-semibold mb-2">Email *</label>
+              <label for="v_email" class="block text-white font-semibold mb-2">{t('forms.emailLabel')} *</label>
               <input
                 type="email"
                 id="v_email"
                 bind:value={visitorForm.email}
                 required
                 class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-                placeholder="you@email.com"
+                placeholder={t('forms.emailPlaceholder')}
               />
             </div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label for="v_phone" class="block text-white font-semibold mb-2">Phone</label>
+              <label for="v_phone" class="block text-white font-semibold mb-2">{t('forms.phoneLabel')}</label>
               <input
                 type="tel"
                 id="v_phone"
                 bind:value={visitorForm.phone}
                 class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-                placeholder="(123) 456-7890"
+                placeholder={t('forms.phonePlaceholder')}
               />
             </div>
             <div>
-              <label for="v_date" class="block text-white font-semibold mb-2">Visit Date</label>
+              <label for="v_date" class="block text-white font-semibold mb-2">{t('forms.visitDateLabel')}</label>
               <input
                 type="date"
                 id="v_date"
@@ -119,24 +120,24 @@
           </div>
 
           <div>
-            <label for="v_address" class="block text-white font-semibold mb-2">Address</label>
+            <label for="v_address" class="block text-white font-semibold mb-2">{t('forms.addressLabel')}</label>
             <input
               type="text"
               id="v_address"
               bind:value={visitorForm.address}
               class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-              placeholder="Street Address"
+              placeholder={t('forms.addressPlaceholder')}
             />
           </div>
 
           <div>
-            <label for="v_how" class="block text-white font-semibold mb-2">How did you hear about us?</label>
+            <label for="v_how" class="block text-white font-semibold mb-2">{t('forms.hearAboutLabel')}</label>
             <input
               type="text"
               id="v_how"
               bind:value={visitorForm.how}
               class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-              placeholder="Friend, Family, Google, etc."
+              placeholder={t('forms.hearAboutPlaceholder')}
             />
           </div>
 
@@ -144,7 +145,7 @@
             type="submit"
             class="w-full bg-purple-400 hover:bg-purple-500 text-black font-bold py-2 px-4 rounded-lg transition-colors"
           >
-            Submit
+            {t('forms.submit')}
           </button>
         </form>
       {/if}
@@ -154,38 +155,37 @@
   <!-- Prayer Request Form -->
   {#if activeTab === 'prayer'}
     <div class="bg-gray-800 rounded-lg p-8">
-      <h2 class="text-2xl font-bold text-white mb-6">Prayer Request</h2>
+      <h2 class="text-2xl font-bold text-white mb-6">{t('forms.prayerTitle')}</h2>
       <p class="text-gray-300 mb-6">
-        Please share your prayer request. Our prayer team will lift you up in prayer. You can choose to remain
-        anonymous or share your contact information.
+        {t('forms.prayerIntro')}
       </p>
 
       {#if submitted.prayer}
         <div class="bg-green-900 border border-green-600 rounded-lg p-4 mb-6">
-          <p class="text-green-200">Thank you for your prayer request. We will pray for you.</p>
+          <p class="text-green-200">{t('forms.prayerSuccess')}</p>
         </div>
       {:else}
         <form onsubmit={handlePrayerSubmit} class="space-y-4">
           <div>
-            <label for="p_name" class="block text-white font-semibold mb-2">Name (Optional)</label>
+            <label for="p_name" class="block text-white font-semibold mb-2">{t('forms.optionalName')}</label>
             <input
               type="text"
               id="p_name"
               bind:value={prayerForm.name}
               class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-              placeholder="Your Name"
+              placeholder={t('forms.namePlaceholder')}
             />
           </div>
 
           <div>
-            <label for="p_request" class="block text-white font-semibold mb-2">Prayer Request *</label>
+            <label for="p_request" class="block text-white font-semibold mb-2">{t('forms.prayerRequestLabel')} *</label>
             <textarea
               id="p_request"
               bind:value={prayerForm.request}
               required
               rows="6"
               class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400"
-              placeholder="Share what you'd like us to pray about..."
+              placeholder={t('forms.prayerRequestPlaceholder')}
             ></textarea>
           </div>
 
@@ -196,14 +196,14 @@
               bind:checked={prayerForm.isPrivate}
               class="w-4 h-4 rounded accent-purple-400"
             />
-            <label for="p_private" class="text-gray-300">Keep this prayer request private</label>
+            <label for="p_private" class="text-gray-300">{t('forms.privateLabel')}</label>
           </div>
 
           <button
             type="submit"
             class="w-full bg-purple-400 hover:bg-purple-500 text-black font-bold py-2 px-4 rounded-lg transition-colors"
           >
-            Submit Prayer Request
+            {t('forms.submitPrayer')}
           </button>
         </form>
       {/if}

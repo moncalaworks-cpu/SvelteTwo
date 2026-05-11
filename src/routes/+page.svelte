@@ -2,6 +2,7 @@
   import { church } from '$lib/data/church.js'
   import { backgroundVideos } from '$lib/data/videos.js'
   import VideoCarousel from '$lib/components/VideoCarousel.svelte'
+  import { t } from '$lib/i18n.svelte.js'
 </script>
 
 <svelte:head>
@@ -13,16 +14,16 @@
   {#snippet children()}
     <div class="text-center max-w-3xl px-6">
       <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">{church.name}</h1>
-      <p class="text-xl md:text-2xl text-gray-300 mb-8">Welcome to our faith community</p>
+      <p class="text-xl md:text-2xl text-gray-300 mb-8">{t('home.heroSubtitle')}</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
         <a href="/live-stream" class="bg-purple-400 hover:bg-purple-500 text-black font-bold py-3 px-8 rounded-lg transition-colors">
-          Watch Live
+          {t('home.watchLive')}
         </a>
         <a href="/events" class="bg-transparent border-2 border-purple-400 hover:bg-purple-400 hover:text-black text-purple-400 font-bold py-3 px-8 rounded-lg transition-colors">
-          Events
+          {t('home.events')}
         </a>
         <a href="/bulletin" class="bg-transparent border-2 border-purple-400 hover:bg-purple-400 hover:text-black text-purple-400 font-bold py-3 px-8 rounded-lg transition-colors">
-          Bulletin
+          {t('home.bulletin')}
         </a>
       </div>
     </div>
@@ -32,48 +33,48 @@
 <!-- Quick Links Section -->
 <section class="py-16 md:py-24 bg-gray-900">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Explore</h2>
+    <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">{t('home.exploreTitle')}</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Live Stream Card -->
       <a href="/live-stream" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">🎥</div>
-        <h3 class="text-xl font-bold text-white mb-2">Live Stream</h3>
-        <p class="text-gray-300">Watch our services live on YouTube</p>
+        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardLiveStream')}</h3>
+        <p class="text-gray-300">{t('home.cardLiveStreamDesc')}</p>
       </a>
 
       <!-- Giving Card -->
       <a href="/giving" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">💝</div>
-        <h3 class="text-xl font-bold text-white mb-2">Online Giving</h3>
-        <p class="text-gray-300">Support our ministry online</p>
+        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardGiving')}</h3>
+        <p class="text-gray-300">{t('home.cardGivingDesc')}</p>
       </a>
 
       <!-- Events Card -->
       <a href="/events" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">📅</div>
-        <h3 class="text-xl font-bold text-white mb-2">Events</h3>
-        <p class="text-gray-300">View upcoming events and services</p>
+        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardEvents')}</h3>
+        <p class="text-gray-300">{t('home.cardEventsDesc')}</p>
       </a>
 
       <!-- Food Pantry Card -->
       <a href="/food-pantry" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">🍽️</div>
-        <h3 class="text-xl font-bold text-white mb-2">Food Pantry</h3>
-        <p class="text-gray-300">Community assistance and resources</p>
+        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardFoodPantry')}</h3>
+        <p class="text-gray-300">{t('home.cardFoodPantryDesc')}</p>
       </a>
 
       <!-- Contact Card -->
       <a href="/contact" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">📧</div>
-        <h3 class="text-xl font-bold text-white mb-2">Contact Us</h3>
-        <p class="text-gray-300">Get in touch with our team</p>
+        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardContact')}</h3>
+        <p class="text-gray-300">{t('home.cardContactDesc')}</p>
       </a>
 
       <!-- Forms Card -->
       <a href="/forms" class="bg-gray-800 hover:bg-gray-700 rounded-lg p-6 transition-colors">
         <div class="text-4xl mb-4">📝</div>
-        <h3 class="text-xl font-bold text-white mb-2">Forms</h3>
-        <p class="text-gray-300">Submit prayer requests and visitor cards</p>
+        <h3 class="text-xl font-bold text-white mb-2">{t('home.cardForms')}</h3>
+        <p class="text-gray-300">{t('home.cardFormsDesc')}</p>
       </a>
     </div>
   </div>
@@ -82,14 +83,12 @@
 <!-- Welcome Section -->
 <section class="py-16 md:py-24 bg-gray-950">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Welcome</h2>
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">{t('home.welcomeTitle')}</h2>
     <p class="text-lg text-gray-300 mb-6">
-      We are a Seventh-day Adventist church dedicated to sharing the love of Christ with our community and the world.
-      Whether you're visiting for the first time or you've been with us for years, we invite you to experience genuine
-      fellowship, inspiring worship, and biblical teaching.
+      {t('home.welcomeP1')}
     </p>
     <p class="text-lg text-gray-300">
-      Join us for Sabbath services at 10:30 AM and discover what it means to be part of God's family.
+      {t('home.welcomeP2')}
     </p>
   </div>
 </section>

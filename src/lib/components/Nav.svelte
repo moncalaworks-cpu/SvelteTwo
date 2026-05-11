@@ -1,14 +1,15 @@
 <script>
   import { church } from '$lib/data/church.js'
+  import { t, getLanguage, setLanguage } from '$lib/i18n.svelte.js'
   let mobileMenuOpen = $state(false)
 
   const navLinks = [
-    { label: 'About Us', href: '/about' },
-    { label: 'Live Stream', href: '/live-stream' },
-    { label: 'Events', href: '/events' },
-    { label: 'Bulletin', href: '/bulletin' },
-    { label: 'Giving', href: '/giving' },
-    { label: 'Contact', href: '/contact' },
+    { key: 'nav.aboutUs', href: '/about' },
+    { key: 'nav.liveStream', href: '/live-stream' },
+    { key: 'nav.events', href: '/events' },
+    { key: 'nav.bulletin', href: '/bulletin' },
+    { key: 'nav.giving', href: '/giving' },
+    { key: 'nav.contact', href: '/contact' },
   ]
 </script>
 
@@ -24,13 +25,22 @@
       <div class="hidden md:flex items-center gap-8">
         {#each navLinks as link}
           <a href={link.href} class="text-gray-300 hover:text-white transition-colors">
-            {link.label}
+            {t(link.key)}
           </a>
         {/each}
       </div>
 
-      <!-- Social Icons + Mobile Menu Toggle -->
+      <!-- Social Icons + Language Toggle + Mobile Menu Toggle -->
       <div class="flex items-center gap-4">
+        <!-- Language Toggle -->
+        <button
+          onclick={() => setLanguage(getLanguage() === 'en' ? 'es' : 'en')}
+          class="text-xs border border-gray-600 hover:border-purple-400 rounded px-2 py-1 text-gray-300 hover:text-purple-300 transition"
+          aria-label="Toggle language"
+        >
+          {getLanguage() === 'en' ? 'ES' : 'EN'}
+        </button>
+
         <a
           href={church.facebook}
           target="_blank"
@@ -80,9 +90,15 @@
             class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded transition-colors"
             onclick={() => (mobileMenuOpen = false)}
           >
-            {link.label}
+            {t(link.key)}
           </a>
         {/each}
+        <button
+          onclick={() => setLanguage(getLanguage() === 'en' ? 'es' : 'en')}
+          class="w-full text-left px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded transition-colors text-sm"
+        >
+          {getLanguage() === 'en' ? 'Español' : 'English'}
+        </button>
       </div>
     {/if}
   </div>

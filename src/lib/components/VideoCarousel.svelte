@@ -1,30 +1,58 @@
 <script>
   import { onMount } from 'svelte'
-  
+
   let { videos = [], rotationInterval = 5000, children } = $props()
-  
+
   let currentIndex = $state(0)
   let currentVideo = $derived(videos[currentIndex])
+  let videoFailed = $state(false)
+  let imageDisplayTimer = $state(null)
+  let isMobile = $state(false)
 
   onMount(() => {
+    // Detect mobile viewport
+    isMobile = window.innerWidth < 768
+    const handleResize = () => {
+      isMobile = window.innerWidth < 768
+    }
+    window.addEventListener('resize', handleResize)
+
     if (videos.length === 0) return
 
     const interval = setInterval(() => {
+      // Cancel any pending image display timer
+      if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
+      videoFailed = false
       currentIndex = (currentIndex + 1) % videos.length
     }, rotationInterval)
 
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+      if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
+      window.removeEventListener('resize', handleResize)
+    }
   })
+
+  function handleVideoError() {
+    videoFailed = true
+    // Display image for 5 seconds before moving to next video
+    if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
+    imageDisplayTimer = setTimeout(() => {
+      currentIndex = (currentIndex + 1) % videos.length
+      videoFailed = false
+    }, 5000)
+  }
 </script>
 
 <div class="relative w-full h-screen overflow-hidden">
   <!-- Video Background -->
-  {#if currentVideo}
+  {#if currentVideo && !videoFailed}
     {#key currentIndex}
       <video
         autoplay
         muted
         playsinline
+        onerror={handleVideoError}
         class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 pointer-events-none"
         style="object-position: center 33%"
       >
@@ -43,6 +71,18 @@
           <source src={currentVideo.webm} type="video/webm" />
         {/if}
       </video>
+    {/key}
+  {/if}
+
+  <!-- Image Fallback (5 second display) -->
+  {#if currentVideo && videoFailed}
+    {#key currentIndex}
+      <img
+        src={isMobile ? currentVideo.imageMobile : currentVideo.imageDesktop}
+        alt={currentVideo.name}
+        class="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        style="object-position: center 33%"
+      />
     {/key}
   {/if}
 

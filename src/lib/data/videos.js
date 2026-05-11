@@ -11,7 +11,7 @@ const videos = [
 
 export const backgroundVideos = videos.map((v) => ({
   name: v.name,
-  // Include both Blob and local sources; browser uses first available
+  // Video sources: try Blob first, then local
   mp4: [
     `${BLOB_BASE}/${v.file}.mp4`,
     `${LOCAL_BASE}/${v.file}.mp4`,
@@ -20,4 +20,7 @@ export const backgroundVideos = videos.map((v) => ({
     `${BLOB_BASE}/${v.file}.webm`,
     `${LOCAL_BASE}/${v.file}.webm`,
   ],
+  // Image fallbacks: responsive thumbnails (5 second display)
+  imageDesktop: `/images/hero-thumbnails/${v.file}-desktop.jpg`,
+  imageMobile: `/images/hero-thumbnails/${v.file}-mobile.jpg`,
 }))

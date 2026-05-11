@@ -26,6 +26,3 @@ build
 *.sw?
 .vercel
 .env*.local
-
-# Large media files (stored in Vercel Blob storage)
-public/videos/

@@ -6,7 +6,7 @@
 
   let currentIndex = $state(0)
   let currentVideo = $derived(videos[currentIndex])
-  let videoFailed = $state(false)
+  let videoFailed = $state(browser && typeof window !== 'undefined' && window.innerWidth < 768)
   let imageDisplayTimer = $state(null)
   let isMobile = $state(browser ? window.innerWidth < 768 : false)
   let videoElement = $state(null)
@@ -47,11 +47,8 @@
 
   // Separate effect for mobile fallback: triggers when video changes
   $effect(() => {
-    // Depend on currentIndex to re-run when video changes
-    currentIndex
-
     // On mobile, show fallback image after short delay since autoplay is unreliable
-    if (isMobile && !videoFailed && browser) {
+    if (isMobile && !videoFailed && currentVideo && browser) {
       if (mobileVideoTimeout) clearTimeout(mobileVideoTimeout)
       mobileVideoTimeout = setTimeout(() => {
         videoFailed = true

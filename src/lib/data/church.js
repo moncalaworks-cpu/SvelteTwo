@@ -15,11 +15,15 @@ export const church = {
     {
       name: 'Pastor Anthony Ponterio Jr.',
       phone: '(732) 492-3547',
+      email: 'pastorponterio@gmail.com',
     },
+  ],
+  elders: [
     {
-      name: 'Pastor Stephen Lee',
-      phone: '(714) 502-4499',
-      email: 'sdasteve@gmail.com',
+      name: 'David Nazaire',
+      title: '1st Elder',
+      phone: '(201) 790-5075',
+      email: 'dvdnazaire@gmail.com',
     },
   ],
 }

@@ -9,35 +9,35 @@
 </svelte:head>
 
 <!-- Hero -->
-<section class="relative w-full h-80 bg-gradient-to-r from-gray-950 to-gray-900 flex items-center justify-center">
+<section class="relative w-full h-80 bg-gradient-to-r from-purple-900 to-purple-800 dark:from-gray-950 dark:to-gray-900 flex items-center justify-center">
   <div class="absolute inset-0 bg-black/40"></div>
   <div class="relative z-10 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold text-white">{t('galleries.title')}</h1>
+    <h1 class="text-4xl md:text-5xl font-bold text-white !text-white">{t('galleries.title')}</h1>
   </div>
 </section>
 
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-  <h2 class="text-2xl font-bold text-white mb-12 text-center">{t('galleries.comingSoon')}</h2>
-  <p class="text-center text-gray-300 mb-12">
+  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-12 text-center">{t('galleries.comingSoon')}</h2>
+  <p class="text-center text-gray-700 dark:text-gray-300 mb-12">
     {t('galleries.comingSoonDesc')}
   </p>
 
   <!-- Photo Grid Placeholder -->
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     {#each Array(12) as _, i}
-      <div class="aspect-square bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-colors">
+      <div class="aspect-square bg-gray-200 dark:bg-gray-800 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
         <div class="text-center">
           <div class="text-3xl mb-2">📸</div>
-          <p class="text-gray-400 text-sm">Photo Coming Soon</p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">Photo Coming Soon</p>
         </div>
       </div>
     {/each}
   </div>
 
   <!-- Instructions -->
-  <section class="mt-16 bg-gray-800 rounded-lg p-8 text-center">
-    <h2 class="text-xl font-bold text-white mb-4">{t('galleries.shareTitle')}</h2>
-    <p class="text-gray-300 mb-4">
+  <section class="mt-16 bg-gray-200 dark:bg-gray-800 rounded-lg p-8 text-center">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">{t('galleries.shareTitle')}</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-4">
       {t('galleries.shareText')}
     </p>
     <a

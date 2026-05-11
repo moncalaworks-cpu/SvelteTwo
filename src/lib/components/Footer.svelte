@@ -1,22 +1,23 @@
 <script>
   import { church } from '$lib/data/church.js'
   import { t } from '$lib/i18n.svelte.js'
+  import sdaLogo from '../../assets/sda-logo.svg'
 </script>
 
-<footer class="bg-gray-900 border-t border-gray-800 mt-16">
+<footer class="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
       <!-- Church Info -->
       <div>
-        <h3 class="text-lg font-bold text-white mb-4">{church.name}</h3>
-        <p class="text-gray-400 text-sm mb-4">{church.address}</p>
-        <p class="text-gray-400 text-sm mb-2">
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">{church.name}</h3>
+        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">{church.address}</p>
+        <p class="text-gray-600 dark:text-gray-400 text-sm mb-2">
           <a href={`tel:${church.phone}`} class="hover:text-white transition-colors">
             {church.phone}
           </a>
         </p>
-        <p class="text-gray-400 text-sm">
-          <a href={`mailto:${church.email}`} class="hover:text-white transition-colors">
+        <p class="text-gray-600 dark:text-gray-400 text-sm">
+          <a href={`mailto:${church.email}`} class="hover:text-gray-900 dark:hover:text-white transition-colors">
             {church.email}
           </a>
         </p>
@@ -24,7 +25,7 @@
 
       <!-- Quick Links -->
       <div>
-        <h3 class="text-lg font-bold text-white mb-4">{t('footer.quickLinks')}</h3>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">{t('footer.quickLinks')}</h3>
         <ul class="space-y-2 text-sm">
           <li><a href="/about" class="text-gray-400 hover:text-white transition-colors">{t('nav.aboutUs')}</a></li>
           <li><a href={church.youtube} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">{t('nav.liveStream')}</a></li>
@@ -36,7 +37,7 @@
 
       <!-- Social Media -->
       <div>
-        <h3 class="text-lg font-bold text-white mb-4">{t('footer.followUs')}</h3>
+        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">{t('footer.followUs')}</h3>
         <div class="flex gap-4">
           <a
             href={church.facebook}
@@ -82,8 +83,17 @@
     </div>
 
     <!-- Copyright -->
-    <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-      <p>&copy; {new Date().getFullYear()} {church.name}. {t('footer.rights')}</p>
+    <div class="border-t border-gray-800 pt-8">
+      <div class="text-center text-gray-400 text-sm mb-6">
+        <p>&copy; {new Date().getFullYear()} {church.name}. {t('footer.rights')}</p>
+      </div>
+      <div class="flex justify-center mb-6">
+        <img src={sdaLogo} alt="Seventh-day Adventist Church" class="h-8 opacity-70 hover:opacity-100 transition-opacity" />
+      </div>
+      <div class="text-center text-gray-500 text-xs max-w-2xl mx-auto">
+        <p class="mb-2">Provided by the North American Division and Adventist Connect.</p>
+        <p>&copy; 2026 North American Division Corporation of Seventh-day Adventists.</p>
+      </div>
     </div>
   </div>
 </footer>

@@ -9,15 +9,15 @@
 </svelte:head>
 
 <div class="max-w-4xl mx-auto px-4 py-16 md:py-24">
-  <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">{t('bulletin.title')}</h1>
-  <p class="text-gray-400 mb-8">{t('bulletin.subtitle')}</p>
+  <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">{t('bulletin.title')}</h1>
+  <p class="text-gray-600 dark:text-gray-400 mb-8">{t('bulletin.subtitle')}</p>
 
   {#if latest}
     <!-- Latest Bulletin -->
     <div class="mb-16">
       <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl font-bold text-white">{t('bulletin.latest')}</h2>
-        <span class="text-sm text-purple-400 bg-purple-900/30 px-3 py-1 rounded">{latest.date}</span>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{t('bulletin.latest')}</h2>
+        <span class="text-sm text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded">{latest.date}</span>
       </div>
 
       <!-- Download Button -->
@@ -30,7 +30,7 @@
       </a>
 
       <!-- PDF Viewer -->
-      <div class="bg-gray-900 rounded-lg border border-gray-700 overflow-y-auto" style="height: clamp(400px, 75vh, 90vh);">
+      <div class="bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700 overflow-y-auto" style="height: clamp(400px, 75vh, 90vh);">
         <iframe
           title="Latest Bulletin"
           src={latest.url}
@@ -41,18 +41,18 @@
 
     <!-- Archive -->
     {#if bulletins.length > 1}
-      <div class="mt-16 border-t border-gray-700 pt-12">
-        <h3 class="text-xl font-bold text-white mb-6">{t('bulletin.past')}</h3>
+      <div class="mt-16 border-t border-gray-300 dark:border-gray-700 pt-12">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">{t('bulletin.past')}</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {#each bulletins.slice(1) as bulletin}
             <a
               href={bulletin.url}
               download
-              class="p-4 bg-gray-800 hover:bg-gray-700 transition rounded-lg border border-gray-700 hover:border-purple-500"
+              class="p-4 bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 transition rounded-lg border border-gray-300 dark:border-gray-700 hover:border-purple-600 dark:hover:border-purple-500"
             >
               <div class="flex items-center justify-between">
-                <span class="text-white font-medium">{bulletin.date}</span>
-                <span class="text-gray-400">📄</span>
+                <span class="text-gray-900 dark:text-white font-medium">{bulletin.date}</span>
+                <span class="text-gray-700 dark:text-gray-400">📄</span>
               </div>
             </a>
           {/each}
@@ -60,9 +60,9 @@
       </div>
     {/if}
   {:else}
-    <div class="bg-gray-800 border border-gray-700 rounded-lg p-8 text-center">
-      <p class="text-gray-400 mb-4">{t('bulletin.empty')}</p>
-      <p class="text-sm text-gray-500">{t('bulletin.checkBack')}</p>
+    <div class="bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg p-8 text-center">
+      <p class="text-gray-700 dark:text-gray-400 mb-4">{t('bulletin.empty')}</p>
+      <p class="text-sm text-gray-600 dark:text-gray-500">{t('bulletin.checkBack')}</p>
     </div>
   {/if}
 </div>

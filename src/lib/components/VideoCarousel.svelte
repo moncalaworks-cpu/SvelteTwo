@@ -10,6 +10,7 @@
   let isMobile = $state(false)
   let videoElement = $state(null)
   let rotationTimeout = $state(null)
+  let autoplayTimeout = $state(null)
 
   onMount(() => {
     // Detect mobile viewport
@@ -36,12 +37,14 @@
     return () => {
       if (rotationTimeout) clearTimeout(rotationTimeout)
       if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
+      if (autoplayTimeout) clearTimeout(autoplayTimeout)
       window.removeEventListener('resize', handleResize)
     }
   })
 
   function handleVideoError() {
     videoFailed = true
+    if (autoplayTimeout) clearTimeout(autoplayTimeout)
     // Display image for 5 seconds before moving to next video
     if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
     imageDisplayTimer = setTimeout(() => {
@@ -52,9 +55,24 @@
 
   function handleVideoEnded() {
     // Auto-advance when video finishes
+    if (autoplayTimeout) clearTimeout(autoplayTimeout)
     if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
     videoFailed = false
     currentIndex = (currentIndex + 1) % videos.length
+  }
+
+  function handleVideoPlay() {
+    // Video started playing, clear autoplay timeout
+    if (autoplayTimeout) clearTimeout(autoplayTimeout)
+  }
+
+  function checkAutoplayTimeout() {
+    // If video hasn't started after 2 seconds, it's probably blocked
+    // Fall back to image on mobile
+    if (autoplayTimeout) clearTimeout(autoplayTimeout)
+    if (isMobile && videoElement && !videoElement.currentTime) {
+      handleVideoError()
+    }
   }
 </script>
 
@@ -69,6 +87,13 @@
         playsinline
         onerror={handleVideoError}
         onended={handleVideoEnded}
+        onplay={handleVideoPlay}
+        onloadstart={() => {
+          // Set timeout to check if autoplay is blocked on mobile
+          if (isMobile && !autoplayTimeout) {
+            autoplayTimeout = setTimeout(checkAutoplayTimeout, 2000)
+          }
+        }}
         class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 pointer-events-none"
         style="object-position: center 33%"
       >

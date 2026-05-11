@@ -1,6 +1,7 @@
 <script>
   import { church } from '$lib/data/church.js'
   import { t, getLanguage, setLanguage } from '$lib/i18n.svelte.js'
+  import { getTheme, toggleTheme } from '$lib/theme.svelte.js'
   let mobileMenuOpen = $state(false)
 
   const navLinks = [
@@ -16,34 +17,53 @@
   ]
 </script>
 
-<nav class="sticky top-0 z-50 bg-gray-950 border-b border-gray-800 shadow-lg">
+<nav class="sticky top-0 z-50 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 shadow-lg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Church Name -->
-      <a href="/" class="text-xl font-bold text-white hover:text-purple-300 transition-colors">
+      <a href="/" class="text-xl font-bold text-gray-900 dark:text-white hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
         {church.name}
       </a>
 
       <!-- Desktop Nav Links -->
       <div class="hidden md:flex items-center gap-8">
         {#each navLinks as link}
-          <a href={link.href} class="text-gray-300 hover:text-white transition-colors">
+          <a href={link.href} class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
             {t(link.key)}
           </a>
         {/each}
         {#each externalLinks as link}
-          <a href={link.href} target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors">
+          <a href={link.href} target="_blank" rel="noopener noreferrer" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
             {t(link.key)}
           </a>
         {/each}
       </div>
 
-      <!-- Social Icons + Language Toggle + Mobile Menu Toggle -->
+      <!-- Social Icons + Theme + Language Toggle + Mobile Menu Toggle -->
       <div class="flex items-center gap-4">
+        <!-- Theme Toggle -->
+        <button
+          onclick={toggleTheme}
+          class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+          aria-label={getTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {#if getTheme() === 'dark'}
+            <!-- Sun icon -->
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2a1 1 0 011 1v2a1 1 0 11-2 0V3a1 1 0 011-1zm0 16a5 5 0 100-10 5 5 0 000 10zm9-7a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1zM4.22 4.22a1 1 0 011.415 0l1.414 1.414a1 1 0 01-1.414 1.414L4.22 5.636a1 1 0 010-1.414zm12.728 12.728a1 1 0 011.414 0l1.414 1.414a1 1 0 11-1.414 1.414l-1.414-1.414a1 1 0 010-1.414zM4.22 19.78a1 1 0 011.414-1.414l1.414 1.414a1 1 0 11-1.414 1.414L4.22 19.78zm12.728-12.728a1 1 0 011.414-1.414l1.414 1.414a1 1 0 11-1.414 1.414l-1.414-1.414zM3 12a1 1 0 011-1h2a1 1 0 110 2H4a1 1 0 01-1-1z" />
+            </svg>
+          {:else}
+            <!-- Moon icon -->
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+            </svg>
+          {/if}
+        </button>
+
         <!-- Language Toggle -->
         <button
           onclick={() => setLanguage(getLanguage() === 'en' ? 'es' : 'en')}
-          class="text-xs border border-gray-600 hover:border-purple-400 rounded px-2 py-1 text-gray-300 hover:text-purple-300 transition"
+          class="text-xs border border-gray-300 dark:border-gray-600 hover:border-purple-600 dark:hover:border-purple-400 rounded px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-purple-700 dark:hover:text-purple-300 transition"
           aria-label="Toggle language"
         >
           {getLanguage() === 'en' ? 'ES' : 'EN'}
@@ -53,7 +73,7 @@
           href={church.facebook}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-400 hover:text-white transition-colors"
+          class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           aria-label="Facebook"
         >
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -66,7 +86,7 @@
           href={church.youtube}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-400 hover:text-white transition-colors"
+          class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           aria-label="YouTube"
         >
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -79,7 +99,7 @@
           href={church.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-400 hover:text-white transition-colors"
+          class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           aria-label="Instagram"
         >
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -92,7 +112,7 @@
         <!-- Mobile Menu Toggle -->
         <button
           onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
-          class="md:hidden inline-flex items-center justify-center p-2 text-gray-400 hover:text-white transition-colors"
+          class="md:hidden inline-flex items-center justify-center p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           aria-label="Toggle menu"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,11 +124,11 @@
 
     <!-- Mobile Menu -->
     {#if mobileMenuOpen}
-      <div class="md:hidden border-t border-gray-800 py-4 space-y-2">
+      <div class="md:hidden border-t border-gray-200 dark:border-gray-800 py-4 space-y-2">
         {#each navLinks as link}
           <a
             href={link.href}
-            class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded transition-colors"
+            class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white rounded transition-colors"
             onclick={() => (mobileMenuOpen = false)}
           >
             {t(link.key)}
@@ -119,15 +139,32 @@
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            class="block px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded transition-colors"
+            class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white rounded transition-colors"
             onclick={() => (mobileMenuOpen = false)}
           >
             {t(link.key)}
           </a>
         {/each}
         <button
+          onclick={toggleTheme}
+          class="w-full text-left px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white rounded transition-colors text-sm flex items-center gap-2"
+          aria-label={getTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {#if getTheme() === 'dark'}
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2a1 1 0 011 1v2a1 1 0 11-2 0V3a1 1 0 011-1zm0 16a5 5 0 100-10 5 5 0 000 10zm9-7a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1zM4.22 4.22a1 1 0 011.415 0l1.414 1.414a1 1 0 01-1.414 1.414L4.22 5.636a1 1 0 010-1.414zm12.728 12.728a1 1 0 011.414 0l1.414 1.414a1 1 0 11-1.414 1.414l-1.414-1.414a1 1 0 010-1.414zM4.22 19.78a1 1 0 011.414-1.414l1.414 1.414a1 1 0 11-1.414 1.414L4.22 19.78zm12.728-12.728a1 1 0 011.414-1.414l1.414 1.414a1 1 0 11-1.414 1.414l-1.414-1.414zM3 12a1 1 0 011-1h2a1 1 0 110 2H4a1 1 0 01-1-1z" />
+            </svg>
+            Light Mode
+          {:else}
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+            </svg>
+            Dark Mode
+          {/if}
+        </button>
+        <button
           onclick={() => setLanguage(getLanguage() === 'en' ? 'es' : 'en')}
-          class="w-full text-left px-3 py-2 text-gray-300 hover:bg-gray-800 hover:text-white rounded transition-colors text-sm"
+          class="w-full text-left px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white rounded transition-colors text-sm"
         >
           {getLanguage() === 'en' ? 'Español' : 'English'}
         </button>

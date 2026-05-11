@@ -75,6 +75,19 @@
             />
           </svg>
         </a>
+        <a
+          href={church.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-400 hover:text-white transition-colors"
+          aria-label="Instagram"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5zm3.5-12a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zm2.205-5.795a1.125 1.125 0 11-2.25 0 1.125 1.125 0 012.25 0z"
+            />
+          </svg>
+        </a>
 
         <!-- Mobile Menu Toggle -->
         <button

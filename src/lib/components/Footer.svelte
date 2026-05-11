@@ -87,8 +87,12 @@
       <div class="text-center text-gray-400 text-sm mb-6">
         <p>&copy; {new Date().getFullYear()} {church.name}. {t('footer.rights')}</p>
       </div>
-      <div class="flex justify-center">
+      <div class="flex justify-center mb-6">
         <img src={sdaLogo} alt="Seventh-day Adventist Church" class="h-8 opacity-70 hover:opacity-100 transition-opacity" />
+      </div>
+      <div class="text-center text-gray-500 text-xs max-w-2xl mx-auto">
+        <p class="mb-2">Provided by the North American Division and Adventist Connect.</p>
+        <p>&copy; 2026 North American Division Corporation of Seventh-day Adventists.</p>
       </div>
     </div>
   </div>

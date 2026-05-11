@@ -8,6 +8,8 @@
   let videoFailed = $state(false)
   let imageDisplayTimer = $state(null)
   let isMobile = $state(false)
+  let videoElement = $state(null)
+  let rotationTimeout = $state(null)
 
   onMount(() => {
     // Detect mobile viewport
@@ -19,15 +21,20 @@
 
     if (videos.length === 0) return
 
-    const interval = setInterval(() => {
-      // Cancel any pending image display timer
-      if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
-      videoFailed = false
-      currentIndex = (currentIndex + 1) % videos.length
-    }, rotationInterval)
+    // Schedule next rotation after rotationInterval
+    const scheduleNextRotation = () => {
+      if (rotationTimeout) clearTimeout(rotationTimeout)
+      rotationTimeout = setTimeout(() => {
+        if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
+        videoFailed = false
+        currentIndex = (currentIndex + 1) % videos.length
+      }, rotationInterval)
+    }
+
+    scheduleNextRotation()
 
     return () => {
-      clearInterval(interval)
+      if (rotationTimeout) clearTimeout(rotationTimeout)
       if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
       window.removeEventListener('resize', handleResize)
     }
@@ -42,6 +49,13 @@
       videoFailed = false
     }, 5000)
   }
+
+  function handleVideoEnded() {
+    // Auto-advance when video finishes
+    if (imageDisplayTimer) clearTimeout(imageDisplayTimer)
+    videoFailed = false
+    currentIndex = (currentIndex + 1) % videos.length
+  }
 </script>
 
 <div class="relative w-full h-screen overflow-hidden">
@@ -49,10 +63,12 @@
   {#if currentVideo && !videoFailed}
     {#key currentIndex}
       <video
+        bind:this={videoElement}
         autoplay
         muted
         playsinline
         onerror={handleVideoError}
+        onended={handleVideoEnded}
         class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 pointer-events-none"
         style="object-position: center 33%"
       >

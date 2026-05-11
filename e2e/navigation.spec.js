@@ -4,7 +4,6 @@ test.describe('Navigation', () => {
   const pages = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
-    { name: 'Live Stream', path: '/live-stream' },
     { name: 'Events', path: '/events' },
     { name: 'Bulletin', path: '/bulletin' },
     { name: 'Contact', path: '/contact' },
@@ -28,8 +27,8 @@ test.describe('Navigation', () => {
     await page.waitForLoadState('domcontentloaded')
 
     // Get hero section buttons - look for buttons with specific text AND href combination
-    // "Watch Live" is unique to hero section
-    const watchLiveButton = page.locator('a[href="/live-stream"]').filter({ hasText: 'Watch Live' })
+    // "Watch Live" is unique to hero section and now links to external YouTube
+    const watchLiveButton = page.locator('a[href*="youtube.com"]').filter({ hasText: 'Watch Live' })
     // For Events and Bulletin, get the first occurrence (hero section, not nav)
     const allEventsButtons = page.locator('a[href="/events"]')
     const allBulletinButtons = page.locator('a[href="/bulletin"]')
@@ -38,7 +37,8 @@ test.describe('Navigation', () => {
     await expect(allEventsButtons.first()).toBeVisible()
     await expect(allBulletinButtons.first()).toBeVisible()
 
-    expect(await watchLiveButton.getAttribute('href')).toBe('/live-stream')
+    expect(await watchLiveButton.getAttribute('href')).toContain('youtube.com')
+    expect(await watchLiveButton.getAttribute('target')).toBe('_blank')
     expect(await allEventsButtons.first().getAttribute('href')).toBe('/events')
     expect(await allBulletinButtons.first().getAttribute('href')).toBe('/bulletin')
   })

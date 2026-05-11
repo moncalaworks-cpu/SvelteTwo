@@ -5,13 +5,13 @@
 
   const navLinks = [
     { key: 'nav.aboutUs', href: '/about' },
-    { key: 'nav.liveStream', href: '/live-stream' },
     { key: 'nav.events', href: '/events' },
     { key: 'nav.bulletin', href: '/bulletin' },
     { key: 'nav.contact', href: '/contact' },
   ]
 
   const externalLinks = [
+    { key: 'nav.liveStream', href: church.youtube },
     { key: 'nav.giving', href: church.giving },
   ]
 </script>

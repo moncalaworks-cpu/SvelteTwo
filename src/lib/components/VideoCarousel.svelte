@@ -28,8 +28,20 @@
         class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 pointer-events-none"
         style="object-position: center 33%"
       >
-        <source src={currentVideo.mp4} type="video/mp4" />
-        <source src={currentVideo.webm} type="video/webm" />
+        {#if Array.isArray(currentVideo.mp4)}
+          {#each currentVideo.mp4 as src}
+            <source {src} type="video/mp4" />
+          {/each}
+        {:else}
+          <source src={currentVideo.mp4} type="video/mp4" />
+        {/if}
+        {#if Array.isArray(currentVideo.webm)}
+          {#each currentVideo.webm as src}
+            <source {src} type="video/webm" />
+          {/each}
+        {:else}
+          <source src={currentVideo.webm} type="video/webm" />
+        {/if}
       </video>
     {/key}
   {/if}

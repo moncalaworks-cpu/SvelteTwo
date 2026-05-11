@@ -1,7 +1,23 @@
-// Background videos for homepage (stored in public/videos, 44MB total)
-export const backgroundVideos = [
-  { name: 'Video 1', mp4: '/videos/IMG_0093.mp4', webm: '/videos/IMG_0093.webm' },
-  { name: 'Video 2', mp4: '/videos/IMG_0148.mp4', webm: '/videos/IMG_0148.webm' },
-  { name: 'Video 3', mp4: '/videos/IMG_1502.mp4', webm: '/videos/IMG_1502.webm' },
-  { name: 'Video 4', mp4: '/videos/IMG_1640.mp4', webm: '/videos/IMG_1640.webm' },
+// Background videos with fallback: tries Vercel Blob first, falls back to local
+const BLOB_BASE = 'https://vysuzf3ywizupqg3.public.blob.vercel-storage.com/videos'
+const LOCAL_BASE = '/videos'
+
+const videos = [
+  { name: 'Video 1', file: 'IMG_0093' },
+  { name: 'Video 2', file: 'IMG_0148' },
+  { name: 'Video 3', file: 'IMG_1502' },
+  { name: 'Video 4', file: 'IMG_1640' },
 ]
+
+export const backgroundVideos = videos.map((v) => ({
+  name: v.name,
+  // Include both Blob and local sources; browser uses first available
+  mp4: [
+    `${BLOB_BASE}/${v.file}.mp4`,
+    `${LOCAL_BASE}/${v.file}.mp4`,
+  ],
+  webm: [
+    `${BLOB_BASE}/${v.file}.webm`,
+    `${LOCAL_BASE}/${v.file}.webm`,
+  ],
+}))

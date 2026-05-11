@@ -11,6 +11,8 @@ describe('backgroundVideos data', () => {
       expect(video).toHaveProperty('name')
       expect(video).toHaveProperty('mp4')
       expect(video).toHaveProperty('webm')
+      expect(video).toHaveProperty('imageDesktop')
+      expect(video).toHaveProperty('imageMobile')
     })
   })
 
@@ -46,6 +48,16 @@ describe('backgroundVideos data', () => {
       expect(webmArray.length).toBeGreaterThan(0)
       mp4Array.forEach(url => expect(url.length).toBeGreaterThan(0))
       webmArray.forEach(url => expect(url.length).toBeGreaterThan(0))
+
+      expect(video.imageDesktop.length).toBeGreaterThan(0)
+      expect(video.imageMobile.length).toBeGreaterThan(0)
+    })
+  })
+
+  it('image fallback paths are valid', () => {
+    backgroundVideos.forEach((video) => {
+      expect(video.imageDesktop).toMatch(/^\/images\/hero-thumbnails\/.+\.jpg$/)
+      expect(video.imageMobile).toMatch(/^\/images\/hero-thumbnails\/.+-mobile\.jpg$/)
     })
   })
 })

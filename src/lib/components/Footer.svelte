@@ -1,6 +1,7 @@
 <script>
   import { church } from '$lib/data/church.js'
   import { t } from '$lib/i18n.svelte.js'
+  import sdaLogo from '../../assets/sda-logo.svg'
 </script>
 
 <footer class="bg-gray-900 border-t border-gray-800 mt-16">
@@ -82,8 +83,13 @@
     </div>
 
     <!-- Copyright -->
-    <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-      <p>&copy; {new Date().getFullYear()} {church.name}. {t('footer.rights')}</p>
+    <div class="border-t border-gray-800 pt-8">
+      <div class="text-center text-gray-400 text-sm mb-6">
+        <p>&copy; {new Date().getFullYear()} {church.name}. {t('footer.rights')}</p>
+      </div>
+      <div class="flex justify-center">
+        <img src={sdaLogo} alt="Seventh-day Adventist Church" class="h-8 opacity-70 hover:opacity-100 transition-opacity" />
+      </div>
     </div>
   </div>
 </footer>

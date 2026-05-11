@@ -14,25 +14,38 @@ describe('backgroundVideos data', () => {
     })
   })
 
-  it('video URLs are local paths', () => {
+  it('video URLs include fallback paths', () => {
     backgroundVideos.forEach((video) => {
-      expect(video.mp4).toMatch(/^\/videos\//)
-      expect(video.webm).toMatch(/^\/videos\//)
+      const mp4Array = Array.isArray(video.mp4) ? video.mp4 : [video.mp4]
+      const webmArray = Array.isArray(video.webm) ? video.webm : [video.webm]
+
+      // Should have local path as fallback
+      expect(mp4Array.some(url => url.match(/^\/videos\//))).toBe(true)
+      expect(webmArray.some(url => url.match(/^\/videos\//))).toBe(true)
     })
   })
 
   it('video URLs end with correct extensions', () => {
     backgroundVideos.forEach((video) => {
-      expect(video.mp4).toMatch(/\.mp4$/)
-      expect(video.webm).toMatch(/\.webm$/)
+      const mp4Array = Array.isArray(video.mp4) ? video.mp4 : [video.mp4]
+      const webmArray = Array.isArray(video.webm) ? video.webm : [video.webm]
+
+      mp4Array.forEach(url => expect(url).toMatch(/\.mp4$/))
+      webmArray.forEach(url => expect(url).toMatch(/\.webm$/))
     })
   })
 
-  it('all fields are non-empty strings', () => {
+  it('all fields are present and non-empty', () => {
     backgroundVideos.forEach((video) => {
       expect(video.name.length).toBeGreaterThan(0)
-      expect(video.mp4.length).toBeGreaterThan(0)
-      expect(video.webm.length).toBeGreaterThan(0)
+
+      const mp4Array = Array.isArray(video.mp4) ? video.mp4 : [video.mp4]
+      const webmArray = Array.isArray(video.webm) ? video.webm : [video.webm]
+
+      expect(mp4Array.length).toBeGreaterThan(0)
+      expect(webmArray.length).toBeGreaterThan(0)
+      mp4Array.forEach(url => expect(url.length).toBeGreaterThan(0))
+      webmArray.forEach(url => expect(url.length).toBeGreaterThan(0))
     })
   })
 })

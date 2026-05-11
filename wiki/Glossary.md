@@ -106,7 +106,7 @@ A tool that runs git hooks. This project uses it to run `npm test` before every 
 ## I
 
 ### i18n
-Internationalization — making the UI available in multiple languages. This project supports EN (English) and ES (Spanish). See [[Internationalization]] for details.
+Internationalization — making the UI available in multiple languages. This project supports EN (English) and ES (Spanish). See [Internationalization](Internationalization) for details.
 
 ### `isMobile`
 A reactive boolean in `VideoCarousel.svelte` that is `true` when the viewport width is less than 768px. Used to decide whether to show images immediately or try video playback.

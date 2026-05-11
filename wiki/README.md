@@ -5,27 +5,27 @@ Welcome to the complete documentation for the SvelteTwo church website project!
 ## 🎯 Quick Links
 
 ### For First-Time Setup
-1. **[[Setup & Installation]]** - Get the project running in 5 minutes
-2. **[[Development Workflow]]** - How to make changes & commit code
-3. **[[Project Structure]]** - Understanding the codebase layout
+1. **[Setup & Installation](Setup-Installation)** - Get the project running in 5 minutes
+2. **[Development Workflow](Development-Workflow)** - How to make changes & commit code
+3. **[Project Structure](Project-Structure)** - Understanding the codebase layout
 
 ### For Feature Development
-- **[[Pages & Routes]]** - All 12 pages (home, about, contact, etc.)
-- **[[Components]]** - Reusable UI components (Nav, Footer, VideoCarousel)
-- **[[Styling & Design System]]** - Colors, typography, dark/light modes
-- **[[Data Management]]** - Church info, videos, bulletins, translations
-- **[[Internationalization (i18n)]]** - EN/ES language support
+- **[Pages & Routes](Pages-Routes)** - All 12 pages (home, about, contact, etc.)
+- **[Components](Components)** - Reusable UI components (Nav, Footer, VideoCarousel)
+- **[Styling & Design System](Styling-Design-System)** - Colors, typography, dark/light modes
+- **[Data Management](Data-Management)** - Church info, videos, bulletins, translations
+- **[Internationalization (i18n)](Internationalization)** - EN/ES language support
 
 ### For Testing & Quality
-- **[[Testing Guide]]** - Unit tests (Vitest) & E2E tests (Playwright)
-- **[[CI/CD Pipeline]]** - GitHub Actions automation
-- **[[Deployment]]** - Vercel deployment process
+- **[Testing Guide](Testing-Guide)** - Unit tests (Vitest) & E2E tests (Playwright)
+- **[CI/CD Pipeline](CI-CD-Pipeline)** - GitHub Actions automation
+- **[Deployment](Deployment)** - Vercel deployment process
 
 ### Reference & Support
-- **[[Common Tasks]]** - How-to guides for frequent operations
-- **[[API Reference]]** - Functions, exports, utilities
-- **[[Troubleshooting]]** - Common issues & solutions
-- **[[Glossary]]** - Technical terms explained
+- **[Common Tasks](Common-Tasks)** - How-to guides for frequent operations
+- **[API Reference](API-Reference)** - Functions, exports, utilities
+- **[Troubleshooting](Troubleshooting)** - Common issues & solutions
+- **[Glossary](Glossary)** - Technical terms explained
 
 ---
 
@@ -74,7 +74,7 @@ git push origin feature/my-feature
 - All CI checks must pass
 - Get approval & merge
 
-See **[[Setup & Installation]]** for detailed steps.
+See **[Setup & Installation](Setup-Installation)** for detailed steps.
 
 ---
 
@@ -277,17 +277,17 @@ When merged to main:
 ## 🆘 Need Help?
 
 ### Documentation
-- **Setup Issues?** → [[Setup & Installation]]
-- **Don't understand routing?** → [[Project Structure]]
-- **Want to add a page?** → [[Pages & Routes]]
-- **Tests failing?** → [[Testing Guide]]
-- **Can't deploy?** → [[Deployment]]
+- **Setup Issues?** → [Setup & Installation](Setup-Installation)
+- **Don't understand routing?** → [Project Structure](Project-Structure)
+- **Want to add a page?** → [Pages & Routes](Pages-Routes)
+- **Tests failing?** → [Testing Guide](Testing-Guide)
+- **Can't deploy?** → [Deployment](Deployment)
 
 ### Common Problems
-- **"npm install fails"** → See [[Troubleshooting]]
-- **"Tests don't pass"** → Read [[Testing Guide]]
-- **"How do I add translations?"** → Check [[Internationalization]]
-- **"Dark mode broken"** → See [[Styling & Design System]]
+- **"npm install fails"** → See [Troubleshooting](Troubleshooting)
+- **"Tests don't pass"** → Read [Testing Guide](Testing-Guide)
+- **"How do I add translations?"** → Check [Internationalization](Internationalization)
+- **"Dark mode broken"** → See [Styling & Design System](Styling-Design-System)
 
 ### External Resources
 - [SvelteKit Docs](https://kit.svelte.dev)
@@ -320,7 +320,7 @@ This is a team project! Contributions welcome:
 4. **Improve docs** - Edit wiki pages
 5. **Give feedback** - Let's make it better!
 
-See [[Development Workflow]] for PR process.
+See [Development Workflow](Development-Workflow) for PR process.
 
 ---
 
@@ -342,23 +342,23 @@ See [[Development Workflow]] for PR process.
 ## 🎓 Learning Paths
 
 ### Path 1: Beginner (First Week)
-1. [[Setup & Installation]]
-2. [[Project Structure]]
-3. [[Development Workflow]]
-4. [[Pages & Routes]] - explore a page
+1. [Setup & Installation](Setup-Installation)
+2. [Project Structure](Project-Structure)
+3. [Development Workflow](Development-Workflow)
+4. [Pages & Routes](Pages-Routes) - explore a page
 5. Make your first commit! 🎉
 
 ### Path 2: Intermediate (Weeks 2-3)
-1. [[Components]] - understand reusables
-2. [[Styling & Design System]]
-3. [[Testing Guide]] - write some tests
-4. [[Internationalization]] - add translations
+1. [Components](Components) - understand reusables
+2. [Styling & Design System](Styling-Design-System)
+3. [Testing Guide](Testing-Guide) - write some tests
+4. [Internationalization](Internationalization) - add translations
 5. Make a feature contribution! 🚀
 
 ### Path 3: Advanced (Months 2+)
-1. [[CI/CD Pipeline]] - understand automation
-2. [[Deployment]] - manage production
-3. [[Data Management]] - optimize data flow
+1. [CI/CD Pipeline](CI-CD-Pipeline) - understand automation
+2. [Deployment](Deployment) - manage production
+3. [Data Management](Data-Management) - optimize data flow
 4. Lead feature development
 5. Mentor new team members! 👥
 
@@ -415,4 +415,4 @@ You'll know you're productive when you can:
 
 **Last Updated:** May 11, 2026  
 **Maintained By:** Development Team  
-**Contribution:** Always open! See [[Development Workflow]]
+**Contribution:** Always open! See [Development Workflow](Development-Workflow)

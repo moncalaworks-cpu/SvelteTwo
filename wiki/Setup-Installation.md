@@ -201,9 +201,9 @@ But this is optional for local development.
 ## 📚 Next Steps
 
 Once installed and verified:
-1. Read [[Project Structure]] to understand the codebase
-2. Check [[Development Workflow]] for daily development
-3. Pick a page/feature from [[Pages & Routes]] to explore
+1. Read [Project Structure](Project-Structure) to understand the codebase
+2. Check [Development Workflow](Development-Workflow) for daily development
+3. Pick a page/feature from [Pages & Routes](Pages-Routes) to explore
 4. Make a small change and commit to test the workflow
 
 ---

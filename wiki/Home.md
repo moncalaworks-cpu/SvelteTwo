@@ -7,32 +7,32 @@ This wiki contains comprehensive documentation for developers, contributors, and
 ## 📖 Quick Navigation
 
 ### Getting Started
-- **[[Setup & Installation]]** - How to set up the project locally
-- **[[Development Workflow]]** - Day-to-day development guide
-- **[[Project Structure]]** - Understanding the codebase
+- **[Setup & Installation](Setup-Installation)** - How to set up the project locally
+- **[Development Workflow](Development-Workflow)** - Day-to-day development guide
+- **[Project Structure](Project-Structure)** - Understanding the codebase
 
 ### Feature Documentation
-- **[[Pages & Routes]]** - All 12 pages explained
-- **[[Components]]** - Reusable UI components (Nav, Footer, VideoCarousel)
-- **[[Styling & Design System]]** - Colors, typography, themes
-- **[[Internationalization (i18n)]]** - Language support & translations
-- **[[Dark/Light Mode]]** - Theme management
+- **[Pages & Routes](Pages-Routes)** - All 12 pages explained
+- **[Components](Components)** - Reusable UI components (Nav, Footer, VideoCarousel)
+- **[Styling & Design System](Styling-Design-System)** - Colors, typography, themes
+- **[Internationalization (i18n)](Internationalization)** - Language support & translations
+- **[Dark/Light Mode](Dark-Light-Mode)** - Theme management
 
 ### Testing & Quality
-- **[[Testing Guide]]** - Unit tests, E2E tests, pre-commit hooks
-- **[[CI/CD Pipeline]]** - GitHub Actions automation
-- **[[Deployment]]** - Vercel deployment process
+- **[Testing Guide](Testing-Guide)** - Unit tests, E2E tests, pre-commit hooks
+- **[CI/CD Pipeline](CI-CD-Pipeline)** - GitHub Actions automation
+- **[Deployment](Deployment)** - Vercel deployment process
 
 ### Data & Integration
-- **[[Data Management]]** - Church info, videos, bulletins, translations
-- **[[Forms & Submissions]]** - Contact & prayer request forms
-- **[[Video Carousel]]** - Hero video backgrounds with image fallback
+- **[Data Management](Data-Management)** - Church info, videos, bulletins, translations
+- **[Forms & Submissions](Forms--Submissions)** - Contact & prayer request forms
+- **[Video Carousel](Video-Carousel)** - Hero video backgrounds with image fallback
 
 ### Reference
-- **[[API Reference]]** - Functions & exports
-- **[[Common Tasks]]** - How-to guides for frequent operations
-- **[[Troubleshooting]]** - Common issues & solutions
-- **[[Glossary]]** - Technical terms & abbreviations
+- **[API Reference](API-Reference)** - Functions & exports
+- **[Common Tasks](Common-Tasks)** - How-to guides for frequent operations
+- **[Troubleshooting](Troubleshooting)** - Common issues & solutions
+- **[Glossary](Glossary)** - Technical terms & abbreviations
 
 ---
 
@@ -96,28 +96,28 @@ git push origin feature/your-feature
 
 ### 👨‍💻 Developers
 Start with:
-1. [[Setup & Installation]]
-2. [[Project Structure]]
-3. [[Development Workflow]]
+1. [Setup & Installation](Setup-Installation)
+2. [Project Structure](Project-Structure)
+3. [Development Workflow](Development-Workflow)
 4. Then pick a feature area to work on
 
 ### 🎨 Designers
 Focus on:
-1. [[Styling & Design System]]
-2. [[Pages & Routes]] (to see all pages)
-3. [[Components]] (reusable UI elements)
+1. [Styling & Design System](Styling-Design-System)
+2. [Pages & Routes](Pages-Routes) (to see all pages)
+3. [Components](Components) (reusable UI elements)
 
 ### 🧪 QA & Testers
 Review:
-1. [[Testing Guide]] (how tests work)
-2. [[Deployment]] (testing checklist)
-3. [[CI/CD Pipeline]] (automated checks)
+1. [Testing Guide](Testing-Guide) (how tests work)
+2. [Deployment](Deployment) (testing checklist)
+3. [CI/CD Pipeline](CI-CD-Pipeline) (automated checks)
 
 ### 📱 Content Editors
 Manage:
-1. [[Data Management]] (church info, videos)
-2. [[Internationalization]] (adding translations)
-3. [[Common Tasks]] (how to update content)
+1. [Data Management](Data-Management) (church info, videos)
+2. [Internationalization](Internationalization) (adding translations)
+3. [Common Tasks](Common-Tasks) (how to update content)
 
 ---
 
@@ -128,7 +128,7 @@ Manage:
 3. **Code Reviews:** Self-review checklist in CLAUDE.md
 4. **Tests:** Must pass all 105 tests before merge
 
-See [[Development Workflow]] for detailed steps.
+See [Development Workflow](Development-Workflow) for detailed steps.
 
 ---
 

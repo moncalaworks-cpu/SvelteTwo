@@ -8,9 +8,14 @@
   <title>Bulletin - {church.name}</title>
 </svelte:head>
 
-<div class="max-w-4xl mx-auto px-4 py-16 md:py-24">
-  <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">{t('bulletin.title')}</h1>
-  <p class="text-gray-600 dark:text-gray-400 mb-8">{t('bulletin.subtitle')}</p>
+<div class="max-w-4xl mx-auto px-4 py-16 md:py-24 relative">
+  <div
+    class="fixed inset-0 pointer-events-none opacity-5 dark:opacity-10"
+    style="background-image: url('/images/checkmark-bg.png'); background-size: 400px; background-repeat: repeat; background-attachment: fixed;"
+  ></div>
+  <div class="relative z-10">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">{t('bulletin.title')}</h1>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">{t('bulletin.subtitle')}</p>
 
   {#if latest}
     <!-- Latest Bulletin -->
@@ -65,4 +70,5 @@
       <p class="text-sm text-gray-600 dark:text-gray-500">{t('bulletin.checkBack')}</p>
     </div>
   {/if}
+  </div>
 </div>
